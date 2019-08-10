@@ -16,6 +16,7 @@
 		C972D54122FEF21D00438584 /* LocationSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C972D54022FEF21D00438584 /* LocationSearch.storyboard */; };
 		C972D54422FEF31700438584 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54322FEF31700438584 /* LocationSearchViewController.swift */; };
 		C972D54622FEF47B00438584 /* WeatherDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C972D54522FEF47B00438584 /* WeatherDetail.storyboard */; };
+		C972D54922FEF57F00438584 /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		C972D54022FEF21D00438584 /* LocationSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearch.storyboard; sourceTree = "<group>"; };
 		C972D54322FEF31700438584 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		C972D54522FEF47B00438584 /* WeatherDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WeatherDetail.storyboard; sourceTree = "<group>"; };
+		C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				C972D54522FEF47B00438584 /* WeatherDetail.storyboard */,
 				C972D53E22FEEB0200438584 /* Weather */,
 				C972D54222FEF2A400438584 /* LocationSearch */,
+				C972D54722FEF50300438584 /* WeatherDetail */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -127,6 +130,14 @@
 				C972D54322FEF31700438584 /* LocationSearchViewController.swift */,
 			);
 			path = LocationSearch;
+			sourceTree = "<group>";
+		};
+		C972D54722FEF50300438584 /* WeatherDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */,
+			);
+			path = WeatherDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 			files = (
 				C972D52022FEE87700438584 /* WeatherTableViewController.swift in Sources */,
 				C972D54422FEF31700438584 /* LocationSearchViewController.swift in Sources */,
+				C972D54922FEF57F00438584 /* WeatherDetailViewController.swift in Sources */,
 				C972D51E22FEE87700438584 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
