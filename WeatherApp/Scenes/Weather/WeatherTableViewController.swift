@@ -12,20 +12,20 @@ class WeatherTableViewController: UITableViewController {
 
     let reactor = Reactor()
 
-    // MARK: Footer View
-    var onTapAddLocationButton: ((WeatherTableViewController, UIButton) -> Void)!
-
-    @IBOutlet weak var addLocationButton: UIButton!
-
-    @IBAction func addLocationAction(_ sender: UIButton) {
-        onTapAddLocationButton!(self, sender)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         reactor.viewController = self
     }
 
+    @IBAction func addLocationButtonAction(_ sender: UIButton) {
+        presentLocationSearchViewController()
+    }
 
+    private func presentLocationSearchViewController() {
+        let locationSearch: LocationSearchViewController = UIStoryboard
+            .locationSearch
+            .instantiateViewController()
+        present(locationSearch, animated: true, completion: nil)
+    }
 }
 

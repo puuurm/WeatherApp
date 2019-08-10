@@ -19,9 +19,6 @@ extension WeatherTableViewController {
         }
 
         private func setUpViewController() {
-            viewController.onTapAddLocationButton = { (_, _) in
-
-            }
         }
 
     }

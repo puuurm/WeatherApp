@@ -27,7 +27,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                     <state key="normal" title="+"/>
                                     <connections>
-                                        <action selector="addLocationAction:" destination="YUg-L9-pOF" eventType="touchUpInside" id="RP4-4o-4e4"/>
+                                        <action selector="addLocationButtonAction:" destination="YUg-L9-pOF" eventType="touchUpInside" id="3b4-sc-EIl"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -48,9 +48,6 @@
                             <outlet property="delegate" destination="YUg-L9-pOF" id="Kih-vD-bbg"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="addLocationButton" destination="a9P-OQ-tOD" id="d3d-eR-eno"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tnb-ei-gJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
