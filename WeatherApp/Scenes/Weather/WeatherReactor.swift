@@ -12,6 +12,18 @@ extension WeatherTableViewController {
 
     class Reactor {
 
+        weak var viewController: WeatherTableViewController! {
+            didSet {
+                setUpViewController()
+            }
+        }
+
+        private func setUpViewController() {
+            viewController.onTapAddLocationButton = { (_, _) in
+
+            }
+        }
+
     }
 
 }
