@@ -6,7 +6,7 @@
 //  Copyright © 2019 yang hee jung. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension WeatherTableViewController {
 
