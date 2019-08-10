@@ -17,6 +17,7 @@
 		C972D54422FEF31700438584 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54322FEF31700438584 /* LocationSearchViewController.swift */; };
 		C972D54622FEF47B00438584 /* WeatherDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C972D54522FEF47B00438584 /* WeatherDetail.storyboard */; };
 		C972D54922FEF57F00438584 /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */; };
+		C972D54B22FF33F300438584 /* WeatherReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54A22FF33F300438584 /* WeatherReactor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		C972D54322FEF31700438584 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		C972D54522FEF47B00438584 /* WeatherDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WeatherDetail.storyboard; sourceTree = "<group>"; };
 		C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
+		C972D54A22FF33F300438584 /* WeatherReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherReactor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				C972D51F22FEE87700438584 /* WeatherTableViewController.swift */,
+				C972D54A22FF33F300438584 /* WeatherReactor.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				C972D54422FEF31700438584 /* LocationSearchViewController.swift in Sources */,
 				C972D54922FEF57F00438584 /* WeatherDetailViewController.swift in Sources */,
 				C972D51E22FEE87700438584 /* AppDelegate.swift in Sources */,
+				C972D54B22FF33F300438584 /* WeatherReactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
