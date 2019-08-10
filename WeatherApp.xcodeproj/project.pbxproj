@@ -15,6 +15,7 @@
 		C972D53322FEE87900438584 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D53222FEE87900438584 /* WeatherAppTests.swift */; };
 		C972D54122FEF21D00438584 /* LocationSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C972D54022FEF21D00438584 /* LocationSearch.storyboard */; };
 		C972D54422FEF31700438584 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54322FEF31700438584 /* LocationSearchViewController.swift */; };
+		C972D54622FEF47B00438584 /* WeatherDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C972D54522FEF47B00438584 /* WeatherDetail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		C972D53422FEE87900438584 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C972D54022FEF21D00438584 /* LocationSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearch.storyboard; sourceTree = "<group>"; };
 		C972D54322FEF31700438584 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		C972D54522FEF47B00438584 /* WeatherDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WeatherDetail.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				C972D52122FEE87700438584 /* Main.storyboard */,
 				C972D54022FEF21D00438584 /* LocationSearch.storyboard */,
+				C972D54522FEF47B00438584 /* WeatherDetail.storyboard */,
 				C972D53E22FEEB0200438584 /* Weather */,
 				C972D54222FEF2A400438584 /* LocationSearch */,
 			);
@@ -207,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C972D54622FEF47B00438584 /* WeatherDetail.storyboard in Resources */,
 				C972D52822FEE87900438584 /* LaunchScreen.storyboard in Resources */,
 				C972D52522FEE87900438584 /* Assets.xcassets in Resources */,
 				C972D52322FEE87700438584 /* Main.storyboard in Resources */,
