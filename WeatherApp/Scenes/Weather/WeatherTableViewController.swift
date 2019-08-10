@@ -10,6 +10,16 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
 
+
+    // MARK: Footer View
+    var onTapAddLocationButton: ((WeatherTableViewController, UIButton) -> Void)?
+
+    @IBOutlet weak var addLocationButton: UIButton!
+
+    @IBAction func addLocationAction(_ sender: UIButton) {
+        onTapAddLocationButton?(self, sender)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

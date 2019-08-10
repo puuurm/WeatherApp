@@ -13,5 +13,5 @@ extension WeatherTableViewController {
     class Reactor {
 
     }
-    
+
 }
