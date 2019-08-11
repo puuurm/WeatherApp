@@ -19,6 +19,7 @@
 		C972D54922FEF57F00438584 /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */; };
 		C972D54B22FF33F300438584 /* WeatherReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54A22FF33F300438584 /* WeatherReactor.swift */; };
 		C972D54E22FF38FC00438584 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54D22FF38FC00438584 /* UIStoryboard+Extension.swift */; };
+		C972D55023007C5700438584 /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D54F23007C5700438584 /* SuggestionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
 		C972D54A22FF33F300438584 /* WeatherReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherReactor.swift; sourceTree = "<group>"; };
 		C972D54D22FF38FC00438584 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
+		C972D54F23007C5700438584 /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				C972D54322FEF31700438584 /* LocationSearchViewController.swift */,
+				C972D54F23007C5700438584 /* SuggestionsTableViewController.swift */,
 			);
 			path = LocationSearch;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				C972D52022FEE87700438584 /* WeatherTableViewController.swift in Sources */,
 				C972D54422FEF31700438584 /* LocationSearchViewController.swift in Sources */,
 				C972D54E22FF38FC00438584 /* UIStoryboard+Extension.swift in Sources */,
+				C972D55023007C5700438584 /* SuggestionsTableViewController.swift in Sources */,
 				C972D54922FEF57F00438584 /* WeatherDetailViewController.swift in Sources */,
 				C972D51E22FEE87700438584 /* AppDelegate.swift in Sources */,
 				C972D54B22FF33F300438584 /* WeatherReactor.swift in Sources */,
