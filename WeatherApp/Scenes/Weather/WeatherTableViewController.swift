@@ -25,7 +25,13 @@ class WeatherTableViewController: UITableViewController {
         let locationSearch: LocationSearchViewController = UIStoryboard
             .locationSearch
             .instantiateViewController()
-        present(locationSearch, animated: true, completion: nil)
+        let locationSearchNavigationController = UINavigationController(
+            rootViewController: locationSearch)
+        navigationController?.present(
+            locationSearchNavigationController,
+            animated: true,
+            completion: nil
+        )
     }
 }
 
