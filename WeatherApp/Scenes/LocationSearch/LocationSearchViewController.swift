@@ -18,6 +18,7 @@ class LocationSearchViewController: UIViewController {
         super.viewDidLoad()
         searchController = UISearchController(searchResultsController: filteredViewController)
         searchController.searchBar.showsCancelButton = true
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
 
@@ -25,7 +26,20 @@ class LocationSearchViewController: UIViewController {
         definesPresentationContext = true
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
 }
+
+extension LocationSearchViewController: UISearchBarDelegate {
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
 
 class SuggestionsTableViewController: UITableViewController {
 
