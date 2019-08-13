@@ -8,11 +8,6 @@
 
 import Foundation
 
-struct Coordinate: Codable {
-    private(set) var latitude: Double
-    private(set) var longitude: Double
-}
-
 enum ServerAccess {
 
     static let defaultSession = URLSession(configuration: .default)
