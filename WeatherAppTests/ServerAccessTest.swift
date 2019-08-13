@@ -37,5 +37,10 @@ class ServerAccessTest: XCTestCase {
         waitForExpectations(timeout: 3)
     }
 
+    func testDarkSkyURL() {
+        let resultURL: String = "https://api.darksky.net/forecast/"
+        XCTAssertTrue(Bundle.main.baseURL == resultURL)
+    }
+
 
 }

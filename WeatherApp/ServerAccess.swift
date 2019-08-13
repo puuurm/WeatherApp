@@ -21,7 +21,7 @@ enum ServerAccess {
                         onSuccess: @escaping (String) -> Void,
                         onFailure: @escaping (Error) -> Void) {
 
-        let urlString = BaseURL.forecast + DarkSky.apiKey + "/\(coordinate.latitude),\(coordinate.longitude)"
+        let urlString = Bundle.main.baseURL + DarkSky.apiKey + "/\(coordinate.latitude),\(coordinate.longitude)"
 
         guard let url = URL(string: urlString) else { return }
 
@@ -67,10 +67,6 @@ struct ServerError: Codable {
     var error: String
 }
 
-
-enum BaseURL {
-    static let forecast = "https://api.darksky.net/forecast/"
-}
 
 enum DarkSky {
     static let apiKey = "8c97b162f1c44e6c82c6505e6a6ec19e"
