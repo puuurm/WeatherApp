@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrentWeatherHeaderCell: UICollectionViewCell, TypeIdentifiable {
+class CurrentWeatherHeaderCell: UICollectionReusableView, TypeIdentifiable {
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!

@@ -22,6 +22,7 @@ class HourlyCollectionViewCell: UICollectionViewCell, TypeIdentifiable  {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupViews()
     }
 
     func setupViews() {
