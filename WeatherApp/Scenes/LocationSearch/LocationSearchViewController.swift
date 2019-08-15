@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationSearchViewController: UIViewController {
 
@@ -38,3 +39,4 @@ extension LocationSearchViewController: UISearchBarDelegate {
     }
 
 }
+

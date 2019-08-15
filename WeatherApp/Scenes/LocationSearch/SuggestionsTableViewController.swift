@@ -26,7 +26,27 @@ class SuggestionsTableViewController: UITableViewController {
             SuggestionsLocationTableViewCell.self,
             forCellReuseIdentifier: SuggestionsLocationTableViewCell.identifier
         )
+
     }
+
+    private func search(for suggestedCompletion: MKLocalSearchCompletion) {
+        let searchRequest = MKLocalSearch.Request(completion: suggestedCompletion)
+        let localSearch = MKLocalSearch(request: searchRequest)
+        localSearch.start { [weak self] (response, error) in
+            guard let weakSelf = self else { return }
+
+            guard error == nil else {
+                return
+            }
+
+            guard let mapItem = response?.mapItems.first
+            else {
+                return
+            }
+        }
+    }
+
+
 }
 
 extension SuggestionsTableViewController {
@@ -41,6 +61,11 @@ extension SuggestionsTableViewController {
         cell.textLabel?.text = filteredResult?.title
         cell.detailTextLabel?.text = filteredResult?.subtitle
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedLocation = filteredLocations?[indexPath.row] else { return }
+        search(for: selectedLocation)
     }
 
 }
