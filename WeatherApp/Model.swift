@@ -18,6 +18,9 @@ struct Response: Codable {
     var currently: CurrentlyWeatherData
     var hourly: HourlyWeatherInfo
     var daily: DailyWeatherInfo
+
+    var latitude: Double
+    var longitude: Double
 }
 
 

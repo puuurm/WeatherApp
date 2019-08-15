@@ -12,12 +12,15 @@ import XCTest
 class ServerAccessTest: XCTestCase {
 
     func testServerRequestSuccess() {
-        let coordinate = Coordinate(latitude: 37.5868661, longitude: 126.7578747)
+        let latitude: Double = 37.5868661
+        let longitude: Double = 126.7578747
+        let coordinate = Coordinate(latitude: latitude, longitude: longitude)
         let expectation = self.expectation(description: #function)
 
         ServerAccess
-            .request(coordinate: coordinate, onSuccess: { (jsonString) in
-                XCTAssertNotNil(jsonString)
+            .request(coordinate: coordinate, onSuccess: { (response: Response) in
+                XCTAssertEqual(response.latitude, latitude)
+                XCTAssertEqual(response.longitude, longitude)
                 expectation.fulfill()
             }) { (error) in }
 
@@ -28,7 +31,7 @@ class ServerAccessTest: XCTestCase {
         let coordinate = Coordinate(latitude: 11111111, longitude: 11111)
         let expectation = self.expectation(description: #function)
         ServerAccess
-            .request(coordinate: coordinate, onSuccess: { (jsonString) in
+            .request(coordinate: coordinate, onSuccess: { (jsonString: Response) in
             }) { (error) in
                 XCTAssertNotNil(error)
                 expectation.fulfill()
