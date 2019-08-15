@@ -17,6 +17,8 @@
 		C95456AA23059A8D00266438 /* HourlyWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95456A823059A8D00266438 /* HourlyWeatherCell.xib */; };
 		C95456AD2305A48E00266438 /* DailyWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95456AB2305A48E00266438 /* DailyWeatherCell.swift */; };
 		C95456AE2305A48E00266438 /* DailyWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95456AC2305A48E00266438 /* DailyWeatherCell.xib */; };
+		C95456B22305A6D300266438 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95456B12305A6D300266438 /* HourlyCollectionViewCell.swift */; };
+		C95456B42305ADBA00266438 /* DailyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95456B32305ADBA00266438 /* DailyCollectionViewCell.swift */; };
 		C972D51E22FEE87700438584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D51D22FEE87700438584 /* AppDelegate.swift */; };
 		C972D52022FEE87700438584 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D51F22FEE87700438584 /* WeatherTableViewController.swift */; };
 		C972D52322FEE87700438584 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C972D52122FEE87700438584 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		C95456A823059A8D00266438 /* HourlyWeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourlyWeatherCell.xib; sourceTree = "<group>"; };
 		C95456AB2305A48E00266438 /* DailyWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherCell.swift; sourceTree = "<group>"; };
 		C95456AC2305A48E00266438 /* DailyWeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyWeatherCell.xib; sourceTree = "<group>"; };
+		C95456B12305A6D300266438 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
+		C95456B32305ADBA00266438 /* DailyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCollectionViewCell.swift; sourceTree = "<group>"; };
 		C972D51A22FEE87700438584 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C972D51D22FEE87700438584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C972D51F22FEE87700438584 /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */,
+				C95456B12305A6D300266438 /* HourlyCollectionViewCell.swift */,
+				C95456B32305ADBA00266438 /* DailyCollectionViewCell.swift */,
 				C95456A12305800A00266438 /* CurrentWeatherHeaderCell.swift */,
 				C95456A22305800A00266438 /* CurrentWeatherHeaderCell.xib */,
 				C95456A723059A8D00266438 /* HourlyWeatherCell.swift */,
@@ -298,6 +304,7 @@
 			files = (
 				C972D52022FEE87700438584 /* WeatherTableViewController.swift in Sources */,
 				C95456A923059A8D00266438 /* HourlyWeatherCell.swift in Sources */,
+				C95456B42305ADBA00266438 /* DailyCollectionViewCell.swift in Sources */,
 				C954569A2303164100266438 /* Bundle+Extension.swift in Sources */,
 				C972D54422FEF31700438584 /* LocationSearchViewController.swift in Sources */,
 				C972D54E22FF38FC00438584 /* UIStoryboard+Extension.swift in Sources */,
@@ -310,6 +317,7 @@
 				C972D5522301EB0000438584 /* ServerAccess.swift in Sources */,
 				C95456AD2305A48E00266438 /* DailyWeatherCell.swift in Sources */,
 				C972D54B22FF33F300438584 /* WeatherReactor.swift in Sources */,
+				C95456B22305A6D300266438 /* HourlyCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
