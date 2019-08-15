@@ -12,8 +12,8 @@ class WeatherTableViewController: UITableViewController {
 
     let reactor = Reactor()
 
-    var locationNames: [String]?
-    var weatherTableData: [String: Response]?
+    var locationNames: [String] = []
+    var weatherTableData: [String: Response] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +40,11 @@ class WeatherTableViewController: UITableViewController {
 
             ServerAccess
                 .request(coordinate: coordinate, onSuccess: { (response: Response) in
-                    self?.weatherTableData?.updateValue(response, forKey: locationName)
-                    self?.locationNames?.append(locationName)
-
+                    self?.weatherTableData.updateValue(response, forKey: locationName)
+                    self?.locationNames.append(locationName)
+                    DispatchQueue.main.async { [weak self] in
+                        self?.tableView.reloadData()
+                    }
                 }) { (error) in
                     self?.presentError(error: error)
             }
@@ -78,3 +80,30 @@ class WeatherTableViewController: UITableViewController {
     }
 }
 
+extension WeatherTableViewController {
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locationNames.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: WeatherTableCell.identifier,
+            for: indexPath) as! WeatherTableCell
+
+        let locationName = locationNames[indexPath.row]
+        guard let weather = weatherTableData[locationName] else {
+                return UITableViewCell()
+        }
+
+        cell.timeLabel.text = "\(weather.currently.time!)"
+        cell.temperatureLabel.text = "\(Int(weather.currently.temperature!))º"
+        cell.locationNameLabel.text = locationName
+        return cell
+    }
+}

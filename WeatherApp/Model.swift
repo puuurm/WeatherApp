@@ -43,6 +43,7 @@ struct HourlyWeatherInfo: Codable {
 }
 
 struct CurrentlyWeatherData: CommonWeatherData {
+    var temperature: Double?
     var cloudCover: Float?
     var dewPoint: Double?
     var humidity: Float?
@@ -65,6 +66,7 @@ struct CurrentlyWeatherData: CommonWeatherData {
 }
 
 struct HourlyWeatherData: CommonWeatherData {
+    var temperature: Double?
     var cloudCover: Float?
     var dewPoint: Double?
     var humidity: Float?
@@ -84,10 +86,10 @@ struct HourlyWeatherData: CommonWeatherData {
     var windSpeed: Float?
     var apparentTemperature: Double?
     var precipAccumulation: Double?
-    var temperature: Double?
 }
 
 struct DailyWeatherData: CommonWeatherData {
+    var temperature: Double?
     var cloudCover: Float?
     var dewPoint: Double?
     var humidity: Float?
@@ -132,6 +134,7 @@ struct DailyWeatherData: CommonWeatherData {
 }
 
 protocol CommonWeatherData: Codable {
+    var temperature: Double? { get set }
     var cloudCover: Float? { get set }
     var dewPoint: Double? { get set }
     var humidity: Float? { get set }
