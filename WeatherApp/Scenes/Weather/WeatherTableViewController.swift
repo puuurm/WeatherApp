@@ -61,6 +61,15 @@ class WeatherTableViewController: UITableViewController {
         )
     }
 
+    private func pushWeatherDetailViewController(_ data: (name: String, weather: Response)) {
+        let weatherDetail: WeatherDetailViewController = UIStoryboard
+            .weatherDetail
+            .instantiateViewController()
+        weatherDetail.locationName = data.name
+        weatherDetail.weatherData = data.weather
+        navigationController?.pushViewController(weatherDetail, animated: true)
+    }
+
     private func presentError(error: Error) {
         let ac = UIAlertController(
             title: "오류가 발생했습니다.",
@@ -105,5 +114,13 @@ extension WeatherTableViewController {
         cell.temperatureLabel.text = "\(Int(weather.currently.temperature!))º"
         cell.locationNameLabel.text = locationName
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let locationName = locationNames[indexPath.row]
+        guard let weather = weatherTableData[locationName] else {
+            return
+        }
+        pushWeatherDetailViewController((locationName, weather))
     }
 }

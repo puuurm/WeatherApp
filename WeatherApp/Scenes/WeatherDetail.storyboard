@@ -17,9 +17,54 @@
                     <view key="view" contentMode="scaleToFill" id="rXG-8d-9Ps">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Cr-Mq-R43">
+                                <rect key="frame" x="0.0" y="44" width="414" height="318"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UF-jt-ReV">
+                                        <rect key="frame" x="149.5" y="36" width="115" height="59"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPm-i4-Bf6">
+                                        <rect key="frame" x="156" y="172" width="102" height="111"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="93"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OY-kE-z8f">
+                                        <rect key="frame" x="173.5" y="103" width="67" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.77614855977252584" green="0.853247003949829" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="WPm-i4-Bf6" firstAttribute="centerX" secondItem="1Cr-Mq-R43" secondAttribute="centerX" id="08J-x9-nJj"/>
+                                    <constraint firstItem="5UF-jt-ReV" firstAttribute="top" secondItem="1Cr-Mq-R43" secondAttribute="top" constant="36" id="360-7g-ePE"/>
+                                    <constraint firstItem="0OY-kE-z8f" firstAttribute="centerX" secondItem="1Cr-Mq-R43" secondAttribute="centerX" id="36j-0K-NOw"/>
+                                    <constraint firstItem="5UF-jt-ReV" firstAttribute="centerX" secondItem="1Cr-Mq-R43" secondAttribute="centerX" id="6PE-n9-uZm"/>
+                                    <constraint firstItem="0OY-kE-z8f" firstAttribute="top" secondItem="5UF-jt-ReV" secondAttribute="bottom" constant="8" id="F7v-rg-8LO"/>
+                                    <constraint firstItem="WPm-i4-Bf6" firstAttribute="top" secondItem="0OY-kE-z8f" secondAttribute="bottom" constant="35" id="qII-oL-jsh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Cr-Mq-R43" firstAttribute="top" secondItem="er4-Hy-I5f" secondAttribute="top" id="cqX-Jv-Chu"/>
+                            <constraint firstItem="1Cr-Mq-R43" firstAttribute="leading" secondItem="er4-Hy-I5f" secondAttribute="leading" id="fVG-r8-US5"/>
+                            <constraint firstItem="er4-Hy-I5f" firstAttribute="bottom" secondItem="1Cr-Mq-R43" secondAttribute="bottom" constant="500" id="g0Y-1v-Kj3"/>
+                            <constraint firstItem="er4-Hy-I5f" firstAttribute="trailing" secondItem="1Cr-Mq-R43" secondAttribute="trailing" id="tJl-hY-Gxn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="er4-Hy-I5f"/>
                     </view>
+                    <connections>
+                        <outlet property="locationLabel" destination="5UF-jt-ReV" id="n0B-Qj-Rtd"/>
+                        <outlet property="summaryLabel" destination="0OY-kE-z8f" id="NE9-Si-VIc"/>
+                        <outlet property="temperatureLabel" destination="WPm-i4-Bf6" id="pes-gd-EkC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXd-3o-Chd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
