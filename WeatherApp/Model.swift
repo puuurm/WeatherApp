@@ -13,6 +13,12 @@ struct Coordinate: Codable {
     private(set) var longitude: Double
 }
 
+struct WeatherTableData {
+    var name: String
+    var temperature: Int
+    var time: Double
+}
+
 struct Response: Codable {
     var timezone: String
     var currently: CurrentlyWeatherData
