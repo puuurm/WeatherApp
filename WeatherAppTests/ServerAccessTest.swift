@@ -21,6 +21,7 @@ class ServerAccessTest: XCTestCase {
             .request(coordinate: coordinate, onSuccess: { (response: Response) in
                 XCTAssertEqual(response.latitude, latitude)
                 XCTAssertEqual(response.longitude, longitude)
+                print(response.timezone)
                 expectation.fulfill()
             }) { (error) in }
 

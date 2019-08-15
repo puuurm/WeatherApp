@@ -21,6 +21,7 @@ class SuggestionsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         tableView.register(
             SuggestionsLocationTableViewCell.self,
             forCellReuseIdentifier: SuggestionsLocationTableViewCell.identifier
