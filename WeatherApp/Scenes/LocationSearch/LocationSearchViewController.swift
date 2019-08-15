@@ -14,8 +14,18 @@ class LocationSearchViewController: UIViewController {
     var searchController = UISearchController()
     let filteredViewController = SuggestionsTableViewController()
 
+    var onDismiss: ((LocationSearchViewController, MKMapItem) -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        filteredViewController.onDismiss = { [weak self] (viewController, mapItem) in
+            guard let weakSelf = self else { return }
+            weakSelf.dismiss(animated: true, completion: {
+                weakSelf.onDismiss?(weakSelf, mapItem)
+            })
+        }
+
         searchController = UISearchController(searchResultsController: filteredViewController)
         searchController.searchBar.showsCancelButton = true
         searchController.searchBar.delegate = self

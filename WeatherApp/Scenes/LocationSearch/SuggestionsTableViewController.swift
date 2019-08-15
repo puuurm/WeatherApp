@@ -14,6 +14,8 @@ class SuggestionsTableViewController: UITableViewController {
     private let searchCompleter = MKLocalSearchCompleter()
     private var filteredLocations: [MKLocalSearchCompletion]?
 
+    var onDismiss: ((SuggestionsTableViewController, MKMapItem) -> Void)?
+
     convenience init() {
         self.init(style: .plain)
         searchCompleter.delegate = self
@@ -43,6 +45,10 @@ class SuggestionsTableViewController: UITableViewController {
             else {
                 return
             }
+
+            weakSelf.dismiss(animated: false, completion: {
+                weakSelf.onDismiss?(weakSelf, mapItem)
+            })
         }
     }
 
