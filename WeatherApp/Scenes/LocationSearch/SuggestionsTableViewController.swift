@@ -94,9 +94,7 @@ extension SuggestionsTableViewController: UISearchResultsUpdating {
     }
 }
 
-class SuggestionsLocationTableViewCell: UITableViewCell {
-
-    static let identifier: String = "\(SuggestionsLocationTableViewCell.self)"
+class SuggestionsLocationTableViewCell: UITableViewCell, TypeIdentifiable {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)

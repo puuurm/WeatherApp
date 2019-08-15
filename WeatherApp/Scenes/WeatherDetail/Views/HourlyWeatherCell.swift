@@ -8,9 +8,7 @@
 
 import UIKit
 
-class HourlyWeatherCell: UICollectionViewCell {
-
-    static let identifier: String = "\(HourlyWeatherCell.self)"
+class HourlyWeatherCell: UICollectionViewCell, TypeIdentifiable {
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!

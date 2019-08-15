@@ -8,10 +8,8 @@
 
 import UIKit
 
-class WeatherTableCell: UITableViewCell {
+class WeatherTableCell: UITableViewCell, TypeIdentifiable {
 
-    static let identifier: String = "\(WeatherTableCell.self)"
-    
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!

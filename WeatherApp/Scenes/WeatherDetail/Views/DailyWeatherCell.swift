@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DailyWeatherCell: UICollectionViewCell {
+class DailyWeatherCell: UICollectionViewCell, TypeIdentifiable {
 
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!

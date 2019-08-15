@@ -8,9 +8,7 @@
 
 import UIKit
 
-class CurrentWeatherHeaderCell: UICollectionViewCell {
-
-    static let identifier: String = "\(CurrentWeatherHeaderCell.self)"
+class CurrentWeatherHeaderCell: UICollectionViewCell, TypeIdentifiable {
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
