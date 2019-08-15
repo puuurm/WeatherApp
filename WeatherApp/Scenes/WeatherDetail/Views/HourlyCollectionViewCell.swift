@@ -8,7 +8,9 @@
 
 import UIKit
 
-class HourlyCollectionViewCell: UICollectionViewCell {
+class HourlyCollectionViewCell: UICollectionViewCell,  {
+
+    static let identifier: String = "\(HourlyCollectionViewCell.self)"
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

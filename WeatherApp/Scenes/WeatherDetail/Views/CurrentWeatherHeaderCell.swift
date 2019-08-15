@@ -10,6 +10,8 @@ import UIKit
 
 class CurrentWeatherHeaderCell: UICollectionViewCell {
 
+    static let identifier: String = "\(CurrentWeatherHeaderCell.self)"
+
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!

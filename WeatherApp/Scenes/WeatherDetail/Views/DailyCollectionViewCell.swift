@@ -10,6 +10,8 @@ import UIKit
 
 class DailyCollectionViewCell: UICollectionViewCell {
 
+    static let identifier: String = "\(DailyCollectionViewCell.self)"
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
