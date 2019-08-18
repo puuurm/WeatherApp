@@ -14,6 +14,8 @@ class WeatherDetailViewController: UIViewController {
 
     let dailyPresenter = DailyWeatherCellPresenter()
 
+    let todayPresenter = TodayWeatherDetailCellPresenter()
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -55,6 +57,11 @@ class WeatherDetailViewController: UIViewController {
             TodaySummaryCell.self,
             forCellWithReuseIdentifier: TodaySummaryCell.identifier
         )
+
+        collectionView.register(
+            TodayWeatherDetailCollectionViewCell.self,
+            forCellWithReuseIdentifier: TodayWeatherDetailCollectionViewCell.identifier
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +73,7 @@ class WeatherDetailViewController: UIViewController {
 extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return 5
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -128,6 +135,13 @@ extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionVie
                 for: indexPath) as! TodaySummaryCell
             cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은 \(weatherData?.currently.temperature ?? 0)이며 오늘 예상 최고 기온은 \(weatherData?.currently.temperature ?? 0)입니다."
             return cell
+        case 4:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TodayWeatherDetailCollectionViewCell.identifier,
+                for: indexPath) as! TodayWeatherDetailCollectionViewCell
+            todayPresenter.collectionView = cell.collectionView
+            todayPresenter.model = weatherData
+            return cell
         default:
             return UICollectionViewCell()
         }
@@ -142,6 +156,8 @@ extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionVie
             return CGSize(width: view.frame.width, height: (50 * dailyDataCount))
         case 3:
             return CGSize(width: view.frame.width, height: 100)
+        case 4:
+            return CGSize(width: view.frame.width, height: 50 * 5)
         default:
             return .zero
         }

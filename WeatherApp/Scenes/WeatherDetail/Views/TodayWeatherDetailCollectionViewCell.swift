@@ -12,7 +12,7 @@ class TodayWeatherDetailCollectionViewCell: UICollectionViewCell, TypeIdentifiab
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
@@ -30,8 +30,8 @@ class TodayWeatherDetailCollectionViewCell: UICollectionViewCell, TypeIdentifiab
         contentView.addSubview(collectionView)
         collectionView.fillSuperview()
         collectionView.register(
-            UINib(nibName: DailyWeatherCell.identifier, bundle: nil),
-            forCellWithReuseIdentifier: DailyWeatherCell.identifier
+            UINib(nibName: TodayWeatherDetailCell.identifier, bundle: nil),
+            forCellWithReuseIdentifier: TodayWeatherDetailCell.identifier
         )
     }
 
