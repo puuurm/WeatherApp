@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HourlyCollectionViewCell: UICollectionViewCell, TypeIdentifiable  {
+class HourlyCollectionViewCell: UICollectionReusableView, TypeIdentifiable  {
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -17,6 +17,7 @@ class HourlyCollectionViewCell: UICollectionViewCell, TypeIdentifiable  {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = true
+        collectionView.backgroundColor = .white
         return collectionView
     }()
 
@@ -26,10 +27,10 @@ class HourlyCollectionViewCell: UICollectionViewCell, TypeIdentifiable  {
     }
 
     func setupViews() {
-        contentView.addSubview(collectionView)
+        addSubview(collectionView)
         collectionView.fillSuperview()
         collectionView.register(
-            HourlyWeatherCell.self,
+            UINib(nibName: HourlyWeatherCell.identifier, bundle: nil),
             forCellWithReuseIdentifier: HourlyWeatherCell.identifier
         )
     }

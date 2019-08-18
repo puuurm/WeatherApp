@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherDetailViewController: UIViewController {
 
+    let hourlyPresenter = HourlyWeatherCellPresenter()
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -29,10 +31,17 @@ class WeatherDetailViewController: UIViewController {
         collectionView.fillSuperview()
         collectionView.dataSource = self
         collectionView.delegate = self
+
         collectionView.register(
             UINib(nibName: CurrentWeatherHeaderCell.identifier, bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: CurrentWeatherHeaderCell.identifier
+        )
+
+        collectionView.register(
+            HourlyCollectionViewCell.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HourlyCollectionViewCell.identifier
         )
     }
 
@@ -45,7 +54,7 @@ class WeatherDetailViewController: UIViewController {
 extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -53,18 +62,34 @@ extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let reusableView: CurrentWeatherHeaderCell
 
         if kind == UICollectionView.elementKindSectionHeader {
-            reusableView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: CurrentWeatherHeaderCell.identifier, for: indexPath
-            ) as! CurrentWeatherHeaderCell
 
-            reusableView.locationLabel.text = locationName
-            reusableView.summaryLabel.text = weatherData!.currently.summary!
-            reusableView.temperatureLabel.text = "\(Int(weatherData!.currently.temperature!))º"
-            return reusableView
+            switch indexPath.section {
+            case 0:
+                let reusableView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: CurrentWeatherHeaderCell.identifier, for: indexPath
+                    ) as! CurrentWeatherHeaderCell
+
+                reusableView.locationLabel.text = locationName
+                reusableView.summaryLabel.text = weatherData!.currently.summary!
+                reusableView.temperatureLabel.text = "\(Int(weatherData!.currently.temperature!))º"
+                return reusableView
+
+            default:
+                let reusableView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath
+                    ) as! HourlyCollectionViewCell
+
+
+                hourlyPresenter.collectionView = reusableView.collectionView
+                hourlyPresenter.model = weatherData
+                return reusableView
+
+            }
+
 
         }
         return UICollectionReusableView()
@@ -81,7 +106,15 @@ extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width:view.frame.width, height: 300)
+
+        switch section {
+        case 0:
+            return CGSize(width:view.frame.width, height: 300)
+        default:
+            return CGSize(width:view.frame.width, height: 120)
+        }
+
     }
 
+    
 }

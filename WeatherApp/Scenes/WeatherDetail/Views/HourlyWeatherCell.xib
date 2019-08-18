@@ -10,13 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
-            <connections>
-                <outlet property="temperatureLabel" destination="tNT-S6-rEF" id="uR1-SY-OBq"/>
-                <outlet property="timeLabel" destination="XTE-C4-XzM" id="l1B-xl-Kkx"/>
-                <outlet property="weatherIconImageView" destination="dSa-2M-YGs" id="S2d-9M-1vR"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HourlyWeatherCell" customModule="WeatherApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="80" height="120"/>
@@ -58,6 +52,11 @@
                 <constraint firstAttribute="bottom" secondItem="fVA-vO-RN6" secondAttribute="bottom" id="sw3-DB-0yZ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="temperatureLabel" destination="tNT-S6-rEF" id="smZ-HY-Bor"/>
+                <outlet property="timeLabel" destination="XTE-C4-XzM" id="jgB-8h-WfJ"/>
+                <outlet property="weatherIconImageView" destination="dSa-2M-YGs" id="JqA-Q3-dgt"/>
+            </connections>
             <point key="canvasLocation" x="47.826086956521742" y="34.821428571428569"/>
         </collectionViewCell>
     </objects>
