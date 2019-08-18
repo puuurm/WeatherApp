@@ -17,6 +17,7 @@ class DailyCollectionViewCell: UICollectionViewCell, TypeIdentifiable {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = false
+        collectionView.backgroundColor = .white
         return collectionView
     }()
 
@@ -29,9 +30,8 @@ class DailyCollectionViewCell: UICollectionViewCell, TypeIdentifiable {
         contentView.addSubview(collectionView)
         collectionView.fillSuperview()
         collectionView.register(
-            DailyWeatherCell.self,
-            forCellWithReuseIdentifier: HourlyWeatherCell.identifier
-        )
+            UINib(nibName: DailyWeatherCell.identifier, bundle: nil),
+            forCellWithReuseIdentifier: DailyWeatherCell.identifier)
     }
 
     required init?(coder aDecoder: NSCoder) {
