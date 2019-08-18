@@ -50,6 +50,11 @@ class WeatherDetailViewController: UIViewController {
             DailyCollectionViewCell.self,
             forCellWithReuseIdentifier: DailyCollectionViewCell.identifier
         )
+
+        collectionView.register(
+            TodaySummaryCell.self,
+            forCellWithReuseIdentifier: TodaySummaryCell.identifier
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +66,7 @@ class WeatherDetailViewController: UIViewController {
 extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -117,6 +122,12 @@ extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionVie
             dailyPresenter.collectionView = cell.collectionView
             dailyPresenter.model = weatherData
             return cell
+        case 3:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TodaySummaryCell.identifier,
+                for: indexPath) as! TodaySummaryCell
+            cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은 \(weatherData?.currently.temperature ?? 0)이며 오늘 예상 최고 기온은 \(weatherData?.currently.temperature ?? 0)입니다."
+            return cell
         default:
             return UICollectionViewCell()
         }
@@ -129,6 +140,8 @@ extension WeatherDetailViewController: UICollectionViewDelegate, UICollectionVie
         case 2:
             let dailyDataCount: CGFloat = CGFloat(weatherData?.daily.data.count ?? 0)
             return CGSize(width: view.frame.width, height: (50 * dailyDataCount))
+        case 3:
+            return CGSize(width: view.frame.width, height: 100)
         default:
             return .zero
         }
