@@ -27,6 +27,7 @@
 		C958433D230983970038BF2A /* TodayWeatherDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958433C230983970038BF2A /* TodayWeatherDetailCollectionViewCell.swift */; };
 		C958433F23098C960038BF2A /* TodayWeatherDetailCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958433E23098C960038BF2A /* TodayWeatherDetailCellPresenter.swift */; };
 		C9584341230999410038BF2A /* WeatherDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9584340230999410038BF2A /* WeatherDetailPresenter.swift */; };
+		C95843432309B3400038BF2A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95843422309B3400038BF2A /* UIView+Extension.swift */; };
 		C95B79C723061EE700D4956C /* HourlyWeatherCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95B79C623061EE700D4956C /* HourlyWeatherCellPresenter.swift */; };
 		C972D51E22FEE87700438584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D51D22FEE87700438584 /* AppDelegate.swift */; };
 		C972D52022FEE87700438584 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972D51F22FEE87700438584 /* WeatherTableViewController.swift */; };
@@ -75,6 +76,7 @@
 		C958433C230983970038BF2A /* TodayWeatherDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		C958433E23098C960038BF2A /* TodayWeatherDetailCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherDetailCellPresenter.swift; sourceTree = "<group>"; };
 		C9584340230999410038BF2A /* WeatherDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailPresenter.swift; sourceTree = "<group>"; };
+		C95843422309B3400038BF2A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C95B79C623061EE700D4956C /* HourlyWeatherCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCellPresenter.swift; sourceTree = "<group>"; };
 		C972D51A22FEE87700438584 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C972D51D22FEE87700438584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				C972D54D22FF38FC00438584 /* UIStoryboard+Extension.swift */,
 				C95456992303164100266438 /* Bundle+Extension.swift */,
+				C95843422309B3400038BF2A /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				C95456AD2305A48E00266438 /* DailyWeatherCell.swift in Sources */,
 				C972D54B22FF33F300438584 /* WeatherReactor.swift in Sources */,
 				C95456B22305A6D300266438 /* HourlyCollectionViewCell.swift in Sources */,
+				C95843432309B3400038BF2A /* UIView+Extension.swift in Sources */,
 				C958433F23098C960038BF2A /* TodayWeatherDetailCellPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
