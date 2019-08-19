@@ -13,6 +13,12 @@ struct Coordinate: Codable {
     private(set) var longitude: Double
 }
 
+extension Coordinate {
+    var asPath: String {
+        return "/\(latitude),\(longitude)"
+    }
+}
+
 struct WeatherTableData {
     var name: String
     var temperature: Int

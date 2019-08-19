@@ -36,10 +36,10 @@ class WeatherTableViewController: UITableViewController {
             let longitude = mapItem.placemark.coordinate.longitude
 
             let coordinate = Coordinate(latitude: latitude, longitude: longitude)
-            let request = try! Request.weather(coordinate: coordinate)
+            let request = Request.weather(coordinate: coordinate)
             
             ServerAccess
-                .request(urlRequest: request!, onSuccess: { (response: Response) in
+                .request(urlRequest: request, onSuccess: { (response: Response) in
                     self?.weatherTableData.updateValue(response, forKey: locationName)
                     self?.locationNames.append(locationName)
                     DispatchQueue.main.async { [weak self] in

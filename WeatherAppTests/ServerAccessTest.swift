@@ -17,10 +17,10 @@ class ServerAccessTest: XCTestCase {
         let coordinate = Coordinate(latitude: latitude, longitude: longitude)
         let expectation = self.expectation(description: #function)
 
-        let request = try! Request.weather(coordinate: coordinate)
+        let request = Request.weather(coordinate: coordinate)
         
         ServerAccess
-            .request(urlRequest: request!, onSuccess: { (response: Response) in
+            .request(urlRequest: request, onSuccess: { (response: Response) in
                 XCTAssertEqual(response.latitude, latitude)
                 XCTAssertEqual(response.longitude, longitude)
                 print(response.timezone)
@@ -34,10 +34,10 @@ class ServerAccessTest: XCTestCase {
         let coordinate = Coordinate(latitude: 11111111, longitude: 11111)
         let expectation = self.expectation(description: #function)
 
-        let request = try! Request.weather(coordinate: coordinate)
+        let request = Request.weather(coordinate: coordinate)
 
         ServerAccess
-            .request(urlRequest: request!, onSuccess: { (jsonString: Response) in
+            .request(urlRequest: request, onSuccess: { (jsonString: Response) in
             }) { (error) in
                 XCTAssertNotNil(error)
                 expectation.fulfill()
@@ -52,21 +52,21 @@ class ServerAccessTest: XCTestCase {
         let coordinate = Coordinate(latitude: latitude, longitude: longitude)
         let expectation = self.expectation(description: #function)
 
-        let request = try! Request.weather(coordinate: coordinate)
+        let request = Request.weather(coordinate: coordinate)
 
         ServerAccess
-            .request(urlRequest: request!, onSuccess: { (response: Response) in
+            .request(urlRequest: request, onSuccess: { (response: Response) in
                 XCTAssertEqual(response.latitude, latitude)
                 XCTAssertEqual(response.longitude, longitude)
 
-                let cachedResponse = URLCache.shared.cachedResponse(for: request!)
+                let cachedResponse = URLCache.shared.cachedResponse(for: request)
                 let object = try! Serializer<Response>.serialize(data: cachedResponse!.data, error: nil)
                 print(object)
                 XCTAssertEqual(object.latitude, response.latitude)
                 expectation.fulfill()
             }, onFailure: { (error) in })
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 5)
     }
 
     func testDarkSkyURL() {

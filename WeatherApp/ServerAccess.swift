@@ -30,11 +30,11 @@ class ServerAccess {
 
 struct Request {
 
-    static func weather(coordinate: Coordinate) throws -> URLRequest? {
+    static func weather(coordinate: Coordinate) -> URLRequest {
         let urlString = Bundle.main.baseURL
             + DarkSkyAPI.key
-            + "/\(coordinate.latitude),\(coordinate.longitude)"
-        guard let url = URL(string: urlString) else { throw GeneralError.invalidURL }
+            + coordinate.asPath
+        let url = URL(string: urlString)!
         return URLRequest(url: url)
     }
 
