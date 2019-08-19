@@ -8,12 +8,14 @@
 
 import UIKit
 
+typealias LocationName = String
+
 class WeatherTableViewController: UITableViewController {
 
     let reactor = Reactor()
 
-    var locationNames: [String] = []
-    var weatherTableData: [String: Response] = [:]
+    var location: [Location] = []
+    var weatherTableData: [LocationName: Response] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,19 +31,14 @@ class WeatherTableViewController: UITableViewController {
             .locationSearch
             .instantiateViewController()
 
-        locationSearch.onDismiss = { [weak self] (_, mapItem) in
+        locationSearch.onDismiss = { [weak self] (_, location) in
 
-            let locationName = mapItem.placemark.name ?? "Unknown Place"
-            let latitude = mapItem.placemark.coordinate.latitude
-            let longitude = mapItem.placemark.coordinate.longitude
+            let request = Request.weather(coordinate: location.coordinate)
 
-            let coordinate = Coordinate(latitude: latitude, longitude: longitude)
-            let request = Request.weather(coordinate: coordinate)
-            
             ServerAccess
                 .request(urlRequest: request, onSuccess: { (response: Response) in
-                    self?.weatherTableData.updateValue(response, forKey: locationName)
-                    self?.locationNames.append(locationName)
+                    self?.weatherTableData.updateValue(response, forKey: location.name)
+                    self?.location.append(location)
                     DispatchQueue.main.async { [weak self] in
                         self?.tableView.reloadData()
                     }
@@ -95,7 +92,7 @@ extension WeatherTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationNames.count
+        return location.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,22 +101,22 @@ extension WeatherTableViewController {
             withIdentifier: WeatherTableCell.identifier,
             for: indexPath) as! WeatherTableCell
 
-        let locationName = locationNames[indexPath.row]
-        guard let weather = weatherTableData[locationName] else {
-                return UITableViewCell()
+        let currentLocation = location[indexPath.row]
+        guard let weather = weatherTableData[currentLocation.name]
+        else {
+            return UITableViewCell()
         }
 
         cell.timeLabel.text = "\(weather.currently.time!)"
         cell.temperatureLabel.text = "\(Int(weather.currently.temperature!))º"
-        cell.locationNameLabel.text = locationName
+        cell.locationNameLabel.text = currentLocation.name
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let locationName = locationNames[indexPath.row]
-        guard let weather = weatherTableData[locationName] else {
-            return
-        }
-        pushWeatherDetailViewController((locationName, weather))
+        let currentLocation = location[indexPath.row]
+        guard let weather = weatherTableData[currentLocation.name]
+        else { return }
+        pushWeatherDetailViewController((currentLocation.name, weather))
     }
 }

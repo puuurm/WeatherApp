@@ -14,7 +14,7 @@ class SuggestionsTableViewController: UITableViewController {
     private let searchCompleter = MKLocalSearchCompleter()
     private var filteredLocations: [MKLocalSearchCompletion]?
 
-    var onDismiss: ((SuggestionsTableViewController, MKMapItem) -> Void)?
+    var onDismiss: ((SuggestionsTableViewController, Location) -> Void)?
 
     convenience init() {
         self.init(style: .plain)
@@ -46,8 +46,15 @@ class SuggestionsTableViewController: UITableViewController {
                 return
             }
 
+            let locationName = mapItem.placemark.name ?? "Unknown Place"
+            let latitude = mapItem.placemark.coordinate.latitude
+            let longitude = mapItem.placemark.coordinate.longitude
+
+            let coordinate = Coordinate(latitude: latitude, longitude: longitude)
+            let location = Location(coordinate: coordinate, name: locationName)
+
             weakSelf.dismiss(animated: false, completion: {
-                weakSelf.onDismiss?(weakSelf, mapItem)
+                weakSelf.onDismiss?(weakSelf, location)
             })
         }
     }

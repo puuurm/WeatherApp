@@ -7,22 +7,21 @@
 //
 
 import UIKit
-import MapKit
 
 class LocationSearchViewController: UIViewController {
 
     var searchController = UISearchController()
     let filteredViewController = SuggestionsTableViewController()
 
-    var onDismiss: ((LocationSearchViewController, MKMapItem) -> Void)?
+    var onDismiss: ((LocationSearchViewController, Location) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        filteredViewController.onDismiss = { [weak self] (viewController, mapItem) in
+        filteredViewController.onDismiss = { [weak self] (viewController, location) in
             guard let weakSelf = self else { return }
             weakSelf.dismiss(animated: true, completion: {
-                weakSelf.onDismiss?(weakSelf, mapItem)
+                weakSelf.onDismiss?(weakSelf, location)
             })
         }
 

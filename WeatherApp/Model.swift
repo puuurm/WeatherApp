@@ -19,6 +19,11 @@ extension Coordinate {
     }
 }
 
+struct Location: Codable {
+    var coordinate: Coordinate
+    var name: String
+}
+
 struct WeatherTableData {
     var name: String
     var temperature: Int
