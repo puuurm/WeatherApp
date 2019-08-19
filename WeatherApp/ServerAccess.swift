@@ -12,15 +12,11 @@ class ServerAccess {
 
     private static let defaultSession = URLSession(configuration: .default)
 
-    static func request<Model: Decodable>(coordinate: Coordinate,
-                        onSuccess: @escaping (Model) -> Void,
-                        onFailure: @escaping (Error) -> Void) {
+    static func request<Model: Decodable>(urlRequest: URLRequest,
+                                          onSuccess: @escaping (Model) -> Void,
+                                          onFailure: @escaping (Error) -> Void) {
 
-        let urlString = Bundle.main.baseURL + DarkSky.apiKey + "/\(coordinate.latitude),\(coordinate.longitude)"
-
-        guard let url = URL(string: urlString) else { return }
-
-        defaultSession.dataTask(with: url) { (data, response, error) in
+        defaultSession.dataTask(with: urlRequest) { (data, response, error) in
             do {
                 let object = try Serializer<Model>.serialize(data: data, error: error)
                 onSuccess(object)
@@ -32,8 +28,21 @@ class ServerAccess {
 
 }
 
+struct Request {
+
+    static func weather(coordinate: Coordinate) throws -> URLRequest? {
+        let urlString = Bundle.main.baseURL
+            + DarkSkyAPI.key
+            + "/\(coordinate.latitude),\(coordinate.longitude)"
+        guard let url = URL(string: urlString) else { throw GeneralError.invalidURL }
+        return URLRequest(url: url)
+    }
+
+}
+
 enum GeneralError: Error {
     case responseError
+    case invalidURL
     case serializeError(data: Data?)
 }
 
@@ -43,8 +52,8 @@ struct ServerError: Codable {
 }
 
 
-enum DarkSky {
-    static let apiKey = "8c97b162f1c44e6c82c6505e6a6ec19e"
+enum DarkSkyAPI {
+    static let key = "8c97b162f1c44e6c82c6505e6a6ec19e"
 }
 
 class Serializer<Model: Decodable> {
