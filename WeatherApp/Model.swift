@@ -168,3 +168,9 @@ protocol CommonWeatherData: Codable {
     var windGust: Float? { get set }
     var windSpeed: Float? { get set }
 }
+
+struct CommonPresenter {
+    static func makeTemperature(_ temperature: Double) -> String {
+        return String(format:"%.f", temperature) + "º"
+    }
+}

@@ -62,7 +62,7 @@ extension WeatherDetailViewController {
 
                     reusableView.locationLabel.text = currentLocation.name
                     reusableView.summaryLabel.text = weatherData.currently.summary!
-                    reusableView.temperatureLabel.text = "\(Int(weatherData.currently.temperature!))º"
+                    reusableView.temperatureLabel.text = CommonPresenter.makeTemperature(weatherData.currently.temperature!)
                     return reusableView
 
                 case 1:
@@ -101,7 +101,11 @@ extension WeatherDetailViewController {
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: TodaySummaryCell.identifier,
                     for: indexPath) as! TodaySummaryCell
-                cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은 \(weatherData?.currently.temperature ?? 0)이며 오늘 예상 최고 기온은 \(weatherData?.currently.temperature ?? 0)입니다."
+            cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은"
+                + CommonPresenter.makeTemperature(weatherData!.currently.temperature!)
+                + "이며 오늘 예상 최고 기온은"
+                + CommonPresenter.makeTemperature(weatherData!.currently.temperature!)
+                + "입니다."
                 return cell
             case 4:
                 let cell = collectionView.dequeueReusableCell(

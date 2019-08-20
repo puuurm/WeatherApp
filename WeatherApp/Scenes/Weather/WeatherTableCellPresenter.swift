@@ -46,7 +46,7 @@ extension WeatherTableViewController {
             }
 
             cell.timeLabel.text = "\(weather.currently.time!)"
-            cell.temperatureLabel.text = "\(Int(weather.currently.temperature!))º"
+            cell.temperatureLabel.text = CommonPresenter.makeTemperature(weather.currently.temperature!) 
             cell.locationNameLabel.text = currentLocation.name
             return cell
         }
