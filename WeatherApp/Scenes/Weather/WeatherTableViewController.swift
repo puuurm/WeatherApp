@@ -113,7 +113,11 @@ extension WeatherTableViewController {
         let currentLocation = WeatherRepository.locations.data[indexPath.row]
         guard let weather = WeatherRepository.weatherTable[currentLocation.name]
         else {
-            return UITableViewCell()
+            cell.timeLabel.text = "-"
+            cell.temperatureLabel.text = "-"
+            cell.locationNameLabel.text = currentLocation.name
+
+            return cell
         }
 
         cell.timeLabel.text = "\(weather.currently.time!)"
