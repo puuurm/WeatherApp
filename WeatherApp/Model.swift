@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct LocationHistory: Codable {
+    var data: [Location] = []
+}
+
 struct Coordinate: Codable {
     private(set) var latitude: Double
     private(set) var longitude: Double

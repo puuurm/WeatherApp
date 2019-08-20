@@ -8,8 +8,6 @@
 
 import UIKit
 
-typealias LocationName = String
-
 class WeatherTableViewController: UITableViewController {
 
     let reactor = Reactor()
@@ -25,6 +23,7 @@ class WeatherTableViewController: UITableViewController {
     @IBAction func addLocationButtonAction(_ sender: UIButton) {
         presentLocationSearchViewController()
     }
+
 
     private func presentLocationSearchViewController() {
         let locationSearch: LocationSearchViewController = UIStoryboard
