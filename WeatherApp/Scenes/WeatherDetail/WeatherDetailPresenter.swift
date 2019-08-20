@@ -20,13 +20,6 @@ extension WeatherDetailViewController {
 
         private let screenWidth: CGFloat = UIScreen.main.bounds.width
 
-        var locationName: String?
-        var weatherData: Response? {
-            didSet {
-                collectionView?.reloadData()
-            }
-        }
-
         weak var collectionView: UICollectionView? {
             didSet {
                 collectionView?.dataSource = self
@@ -47,6 +40,9 @@ extension WeatherDetailViewController {
 
         public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
+            let currentLocation = WeatherRepository.locations.data[indexPath.row]
+            let weatherData = WeatherRepository.weatherTable[currentLocation.name]
+
             if kind == UICollectionView.elementKindSectionHeader {
 
                 switch indexPath.section {
@@ -56,9 +52,17 @@ extension WeatherDetailViewController {
                         withReuseIdentifier: CurrentWeatherHeaderCell.identifier, for: indexPath
                         ) as! CurrentWeatherHeaderCell
 
-                    reusableView.locationLabel.text = locationName
-                    reusableView.summaryLabel.text = weatherData!.currently.summary!
-                    reusableView.temperatureLabel.text = "\(Int(weatherData!.currently.temperature!))º"
+                    guard let weatherData = weatherData
+                        else {
+                            reusableView.locationLabel.text = currentLocation.name
+                            reusableView.summaryLabel.text = "-"
+                            reusableView.temperatureLabel.text = "-"
+                            return reusableView
+                    }
+
+                    reusableView.locationLabel.text = currentLocation.name
+                    reusableView.summaryLabel.text = weatherData.currently.summary!
+                    reusableView.temperatureLabel.text = "\(Int(weatherData.currently.temperature!))º"
                     return reusableView
 
                 case 1:
@@ -66,8 +70,6 @@ extension WeatherDetailViewController {
                         ofKind: kind,
                         withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath
                         ) as! HourlyCollectionViewCell
-
-
                     hourlyPresenter.collectionView = reusableView.collectionView
                     hourlyPresenter.model = weatherData
                     return reusableView
@@ -83,6 +85,10 @@ extension WeatherDetailViewController {
 
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+            let currentLocation = WeatherRepository.locations.data[indexPath.row]
+            let weatherData = WeatherRepository.weatherTable[currentLocation.name]
+
             switch indexPath.section {
             case 2:
                 let cell = collectionView.dequeueReusableCell(
@@ -111,6 +117,9 @@ extension WeatherDetailViewController {
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+            let currentLocation = WeatherRepository.locations.data[indexPath.row]
+            let weatherData = WeatherRepository.weatherTable[currentLocation.name]
 
             switch indexPath.section {
             case 2:

@@ -23,9 +23,6 @@ class WeatherDetailViewController: UIViewController {
         return collectionView
     }()
 
-    var locationName: String?
-    var weatherData: Response?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
@@ -61,9 +58,6 @@ class WeatherDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        presenter.locationName = locationName
-        presenter.weatherData = weatherData
     }
 
 }

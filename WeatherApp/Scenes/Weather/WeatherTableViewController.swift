@@ -84,8 +84,6 @@ class WeatherTableViewController: UITableViewController {
         let weatherDetail: WeatherDetailViewController = UIStoryboard
             .weatherDetail
             .instantiateViewController()
-        weatherDetail.locationName = data.name
-        weatherDetail.weatherData = data.weather
         navigationController?.pushViewController(weatherDetail, animated: true)
     }
 
