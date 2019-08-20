@@ -12,12 +12,34 @@ class WeatherTableViewController: UITableViewController {
 
     let reactor = Reactor()
 
-    var location: [Location] = []
-    var weatherTableData: [LocationName: Response] = [:]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         reactor.viewController = self
+
+        NotificationCenter.default.addObserver(
+            forName: .GetWeatherSuccess,
+            object: nil,
+            queue: .main) { [weak self] (note) in
+                self?.tableView.reloadData()
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .GetWeatherFailure,
+            object: nil,
+            queue: .main) { [weak self] (note) in
+                guard case .error(let error) = WeatherRepository.state else {
+                    return
+                }
+                self?.presentError(error: error)
+        }
+
+        WeatherRepository.getAllWeather()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+
     }
 
     @IBAction func addLocationButtonAction(_ sender: UIButton) {
@@ -30,20 +52,8 @@ class WeatherTableViewController: UITableViewController {
             .locationSearch
             .instantiateViewController()
 
-        locationSearch.onDismiss = { [weak self] (_, location) in
-
-            let request = Request.weather(coordinate: location.coordinate)
-
-            ServerAccess
-                .request(urlRequest: request, onSuccess: { (response: Response) in
-                    self?.weatherTableData.updateValue(response, forKey: location.name)
-                    self?.location.append(location)
-                    DispatchQueue.main.async { [weak self] in
-                        self?.tableView.reloadData()
-                    }
-                }, onFailure: { (error) in
-                    self?.presentError(error: error)
-                })
+        locationSearch.onDismiss = { (_, location) in
+            WeatherRepository.add(location: location)
         }
 
         let locationSearchNavigationController = UINavigationController(
@@ -91,7 +101,7 @@ extension WeatherTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return location.count
+        return WeatherRepository.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,8 +110,8 @@ extension WeatherTableViewController {
             withIdentifier: WeatherTableCell.identifier,
             for: indexPath) as! WeatherTableCell
 
-        let currentLocation = location[indexPath.row]
-        guard let weather = weatherTableData[currentLocation.name]
+        let currentLocation = WeatherRepository.locations.data[indexPath.row]
+        guard let weather = WeatherRepository.weatherTable[currentLocation.name]
         else {
             return UITableViewCell()
         }
@@ -113,8 +123,8 @@ extension WeatherTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentLocation = location[indexPath.row]
-        guard let weather = weatherTableData[currentLocation.name]
+        let currentLocation = WeatherRepository.locations.data[indexPath.row]
+        guard let weather = WeatherRepository.weatherTable[currentLocation.name]
         else { return }
         pushWeatherDetailViewController((currentLocation.name, weather))
     }
