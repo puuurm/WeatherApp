@@ -25,9 +25,20 @@ class WeatherDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollectionView()
+        registerCollectionViewCell()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
+    private func setupCollectionView() {
         view.addSubview(collectionView)
         collectionView.fillSuperview()
+    }
 
+    private func registerCollectionViewCell() {
         collectionView.register(
             UINib(nibName: CurrentWeatherHeaderCell.identifier, bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -54,10 +65,6 @@ class WeatherDetailViewController: UIViewController {
             TodayWeatherDetailCollectionViewCell.self,
             forCellWithReuseIdentifier: TodayWeatherDetailCollectionViewCell.identifier
         )
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
 
 }
