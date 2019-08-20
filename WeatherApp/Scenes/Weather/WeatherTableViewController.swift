@@ -18,12 +18,22 @@ class WeatherTableViewController: UITableViewController {
         super.viewDidLoad()
         reactor.viewController = self
 
+        setupPresenter()
+        
+        observeWeatherRepository()
+
+        WeatherRepository.getAllWeather()
+    }
+
+    private func setupPresenter() {
         presenter.tableView = tableView
 
         presenter.onTapItem = { [weak self] (_, data) in
             self?.pushWeatherDetailViewController((data.name, data.weather))
         }
+    }
 
+    private func observeWeatherRepository() {
         NotificationCenter.default.addObserver(
             forName: .GetWeatherSuccess,
             object: nil,
@@ -40,8 +50,6 @@ class WeatherTableViewController: UITableViewController {
                 }
                 self?.presentError(error: error)
         }
-
-        WeatherRepository.getAllWeather()
     }
 
     override func viewWillAppear(_ animated: Bool) {
