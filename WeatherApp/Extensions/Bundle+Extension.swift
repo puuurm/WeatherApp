@@ -10,14 +10,15 @@ import Foundation
 
 extension Bundle {
 
-    var baseURL: String {
+    var forecastURL: String {
         let darkSkyDic = infoDictionary![.keyDarkSky] as! [String: Any]
         let host = darkSkyDic[.keyHost] as! String
-        let path = darkSkyDic[.keyPath] as! String
+        let path = darkSkyDic[.keyPath] as! [String: Any]
+        let forcastPath = path[.keyForcastPath] as! String
 
         var urlString: String = .protocolName
         urlString += host
-        urlString += path
+        urlString += forcastPath
         return urlString
     }
 
@@ -30,5 +31,8 @@ fileprivate extension String {
     static let keyDarkSky = "DarkSky"
     static let keyHost = "Host"
     static let keyPath = "Path"
+
+    static let keyResorcePath = "Resource"
+    static let keyForcastPath = "Forecast"
 
 }

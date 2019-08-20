@@ -7,7 +7,12 @@
 		<key>Host</key>
 		<string>api.darksky.net</string>
 		<key>Path</key>
-		<string>/forecast/</string>
+		<dict>
+			<key>Resorce</key>
+			<string>/images/weather-icons/</string>
+			<key>Forecast</key>
+			<string>/forecast/</string>
+		</dict>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

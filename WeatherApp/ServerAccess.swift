@@ -31,7 +31,7 @@ class ServerAccess {
 struct Request {
 
     static func weather(coordinate: Coordinate) -> URLRequest {
-        let urlString = Bundle.main.baseURL
+        let urlString = Bundle.main.forecastURL
             + DarkSkyAPI.key
             + coordinate.asPath
         let url = URL(string: urlString)!
