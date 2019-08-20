@@ -40,6 +40,7 @@ class WeatherRepository {
     static func add(location: Location) {
         locations.data.append(location)
         getWeather(for: location)
+        notifyGetWeatherFinish()
     }
 
     static func load(_ object: LocationHistory) {
@@ -48,10 +49,12 @@ class WeatherRepository {
 
     static func getAllWeather() {
         locations.data.forEach { (location) in
-            group.enter()
             getWeather(for: location)
         }
+        notifyGetWeatherFinish()
+    }
 
+    static func notifyGetWeatherFinish() {
         group.notify(queue: .main) {
             guard case .error(let error) = state else {
                 NotificationCenter.default.post(
@@ -68,6 +71,7 @@ class WeatherRepository {
     }
 
     static func getWeather(for location: Location) {
+        group.enter()
         state = .requesting
         let request = Request.weather(coordinate: location.coordinate)
 
