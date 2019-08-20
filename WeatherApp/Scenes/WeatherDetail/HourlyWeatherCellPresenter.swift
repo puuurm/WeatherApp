@@ -34,10 +34,13 @@ extension WeatherDetailViewController {
                 withReuseIdentifier: HourlyWeatherCell.identifier,
                 for: indexPath) as! HourlyWeatherCell
             let data = model!.hourly.data[indexPath.row]
-            DispatchQueue.main.async {
-                cell.temperatureLabel.text = "\(data.temperature!)"
-            }
+            cell.temperatureLabel.text = "\(data.temperature!)"
+            let request = Request.icon(name: data.icon!)
+            ServerAccess.request(urlRequest: request, onSuccess: { (icon) in
+                cell.weatherIconImageView.image = icon
+            }) { (_) in }
             return cell
+
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -5,10 +5,15 @@
 	<key>DarkSky</key>
 	<dict>
 		<key>Host</key>
-		<string>api.darksky.net</string>
+		<dict>
+			<key>API</key>
+			<string>api.darksky.net</string>
+			<key>Resource</key>
+			<string>darksky.net</string>
+		</dict>
 		<key>Path</key>
 		<dict>
-			<key>Resorce</key>
+			<key>Resource</key>
 			<string>/images/weather-icons/</string>
 			<key>Forecast</key>
 			<string>/forecast/</string>

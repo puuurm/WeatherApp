@@ -12,16 +12,29 @@ extension Bundle {
 
     var forecastURL: String {
         let darkSkyDic = infoDictionary![.keyDarkSky] as! [String: Any]
-        let host = darkSkyDic[.keyHost] as! String
+        let host = darkSkyDic[.keyHost] as! [String: Any]
+        let apiHost = host[.keyAPI] as! String
         let path = darkSkyDic[.keyPath] as! [String: Any]
         let forcastPath = path[.keyForcastPath] as! String
 
         var urlString: String = .protocolName
-        urlString += host
+        urlString += apiHost
         urlString += forcastPath
         return urlString
     }
 
+    var iconURL: String {
+        let darkSkyDic = infoDictionary![.keyDarkSky] as! [String: Any]
+        let host = darkSkyDic[.keyHost] as! [String: Any]
+        let resourceHost = host[.keyResorce] as! String
+        let path = darkSkyDic[.keyPath] as! [String: Any]
+        let resorcePath = path[.keyResorcePath] as! String
+
+        var urlString: String = .protocolName
+        urlString += resourceHost
+        urlString += resorcePath
+        return urlString
+    }
 }
 
 fileprivate extension String {
@@ -31,7 +44,8 @@ fileprivate extension String {
     static let keyDarkSky = "DarkSky"
     static let keyHost = "Host"
     static let keyPath = "Path"
-
+    static let keyAPI = "API"
+    static let keyResorce = "Resource"
     static let keyResorcePath = "Resource"
     static let keyForcastPath = "Forecast"
 

@@ -34,6 +34,10 @@ extension WeatherDetailViewController {
                 withReuseIdentifier: DailyWeatherCell.identifier,
                 for: indexPath) as! DailyWeatherCell
             let data = model!.daily.data[indexPath.row]
+            let request = Request.icon(name: data.icon!)
+            ServerAccess.request(urlRequest: request, onSuccess: { (icon) in
+                cell.iconImageView.image = icon
+            }) { (_) in }
             cell.highTemperatureLabel.text = "\(data.apparentTemperatureHigh ?? .zero)"
             cell.lowTemperatureLabel.text = "\(data.apparentTemperatureLow ?? .zero)"
             return cell

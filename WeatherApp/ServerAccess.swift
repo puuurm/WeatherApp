@@ -6,7 +6,7 @@
 //  Copyright © 2019 yang hee jung. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ServerAccess {
 
@@ -17,11 +17,34 @@ class ServerAccess {
                                           onFailure: @escaping (Error) -> Void) {
 
         defaultSession.dataTask(with: urlRequest) { (data, response, error) in
-            do {
-                let object = try Serializer<Model>.serialize(data: data, error: error)
-                onSuccess(object)
-            } catch {
-                onFailure(error)
+            DispatchQueue.main.async {
+                do {
+                    let object = try Serializer<Model>.serialize(data: data, error: error)
+                    onSuccess(object)
+                } catch {
+                    onFailure(error)
+                }
+
+            }
+        }.resume()
+    }
+
+    static func request(urlRequest: URLRequest,
+                        onSuccess: @escaping (UIImage?) -> Void,
+                        onFailure: @escaping (Error) -> Void) {
+
+        defaultSession.dataTask(with: urlRequest) { (data, response, error) in
+            DispatchQueue.main.async {
+                do {
+                    if let data = data, let image = UIImage(data: data) {
+                        onSuccess(image)
+                    } else {
+                        onSuccess(nil)
+                    }
+                } catch {
+                    onFailure(error)
+                }
+
             }
         }.resume()
     }
@@ -34,6 +57,13 @@ struct Request {
         let urlString = Bundle.main.forecastURL
             + DarkSkyAPI.key
             + coordinate.asPath
+        let url = URL(string: urlString)!
+        return URLRequest(url: url)
+    }
+
+    static func icon(name: String) -> URLRequest {
+        let urlString = Bundle.main.iconURL
+            + name + ".png"
         let url = URL(string: urlString)!
         return URLRequest(url: url)
     }
