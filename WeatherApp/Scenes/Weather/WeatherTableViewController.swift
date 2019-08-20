@@ -12,15 +12,23 @@ class WeatherTableViewController: UITableViewController {
 
     let reactor = Reactor()
 
+    let presenter = Presenter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         reactor.viewController = self
 
+        presenter.tableView = tableView
+
+        presenter.onTapItem = { [weak self] (_, data) in
+            self?.pushWeatherDetailViewController((data.name, data.weather))
+        }
+
         NotificationCenter.default.addObserver(
             forName: .GetWeatherSuccess,
             object: nil,
-            queue: .main) { [weak self] (note) in
-                self?.tableView.reloadData()
+            queue: .main) { [weak presenter] (note) in
+                presenter?.tableView.reloadData()
         }
 
         NotificationCenter.default.addObserver(
@@ -38,8 +46,6 @@ class WeatherTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-
     }
 
     @IBAction func addLocationButtonAction(_ sender: UIButton) {
@@ -91,45 +97,5 @@ class WeatherTableViewController: UITableViewController {
         ac.addAction(action)
 
         present(ac, animated: true, completion: nil)
-    }
-}
-
-extension WeatherTableViewController {
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return WeatherRepository.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: WeatherTableCell.identifier,
-            for: indexPath) as! WeatherTableCell
-
-        let currentLocation = WeatherRepository.locations.data[indexPath.row]
-        guard let weather = WeatherRepository.weatherTable[currentLocation.name]
-        else {
-            cell.timeLabel.text = "-"
-            cell.temperatureLabel.text = "-"
-            cell.locationNameLabel.text = currentLocation.name
-
-            return cell
-        }
-
-        cell.timeLabel.text = "\(weather.currently.time!)"
-        cell.temperatureLabel.text = "\(Int(weather.currently.temperature!))º"
-        cell.locationNameLabel.text = currentLocation.name
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentLocation = WeatherRepository.locations.data[indexPath.row]
-        guard let weather = WeatherRepository.weatherTable[currentLocation.name]
-        else { return }
-        pushWeatherDetailViewController((currentLocation.name, weather))
     }
 }
