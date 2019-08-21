@@ -34,7 +34,9 @@ extension WeatherDetailViewController {
                 withReuseIdentifier: HourlyWeatherCell.identifier,
                 for: indexPath) as! HourlyWeatherCell
             let data = model!.hourly.data[indexPath.row]
-            cell.temperatureLabel.text = CommonPresenter.makeTemperature(data.temperature!)
+            let date = Date(timeIntervalSince1970: data.time)
+            cell.timeLabel.text = date.getDayName(by: .hour, timeZone: model!.timezone)
+            cell.temperatureLabel.text = data.temperature!.asTemperature
             let request = Request.icon(name: data.icon!)
             ServerAccess.request(urlRequest: request, onSuccess: { (icon) in
                 cell.weatherIconImageView.image = icon

@@ -31,7 +31,7 @@ struct Location: Codable {
 struct WeatherTableData {
     var name: String
     var temperature: Int
-    var time: Double
+    var time: TimeInterval
 }
 
 struct Response: Codable {
@@ -70,7 +70,7 @@ struct CurrentlyWeatherData: CommonWeatherData {
     var precipType: String?
     var pressure: Double?
     var summary: String?
-    var time: Int!
+    var time: TimeInterval!
     var uvIndex: Float?
     var visibility: Float?
     var windBearing: Double?
@@ -93,7 +93,7 @@ struct HourlyWeatherData: CommonWeatherData {
     var precipType: String?
     var pressure: Double?
     var summary: String?
-    var time: Int!
+    var time: TimeInterval!
     var uvIndex: Float?
     var visibility: Float?
     var windBearing: Double?
@@ -116,36 +116,36 @@ struct DailyWeatherData: CommonWeatherData {
     var precipType: String?
     var pressure: Double?
     var summary: String?
-    var time: Int!
+    var time: TimeInterval!
     var uvIndex: Float?
     var visibility: Float?
     var windBearing: Double?
     var windGust: Float?
     var windSpeed: Float?
     var apparentTemperatureHigh: Double?
-    var apparentTemperatureHighTime: Double?
+    var apparentTemperatureHighTime: TimeInterval?
     var apparentTemperatureLow: Double?
-    var apparentTemperatureLowTime: Double?
+    var apparentTemperatureLowTime: TimeInterval?
     var apparentTemperatureMax: Double?
-    var apparentTemperatureMaxTime: Double?
+    var apparentTemperatureMaxTime: TimeInterval?
     var apparentTemperatureMin: Double?
-    var apparentTemperatureMinTime: Double?
+    var apparentTemperatureMinTime: TimeInterval?
     var moonPhase: Double?
     var precipAccumulation: Double?
     var precipIntensityMax: Double?
-    var precipIntensityMaxTime: Double?
-    var sunriseTime: Double?
-    var sunsetTime: Double?
+    var precipIntensityMaxTime: TimeInterval?
+    var sunriseTime: TimeInterval?
+    var sunsetTime: TimeInterval?
     var temperatureHigh: Double?
-    var temperatureHighTime: Double?
+    var temperatureHighTime: TimeInterval?
     var temperatureLow: Double?
-    var temperatureLowTime: Double?
+    var temperatureLowTime: TimeInterval?
     var temperatureMax: Double?
-    var temperatureMaxTime: Double?
+    var temperatureMaxTime: TimeInterval?
     var temperatureMin: Double?
-    var temperatureMinTime: Double?
-    var uvIndexTime: Double?
-    var windGustTime: Double?
+    var temperatureMinTime: TimeInterval?
+    var uvIndexTime: TimeInterval?
+    var windGustTime: TimeInterval?
 }
 
 protocol CommonWeatherData: Codable {
@@ -161,16 +161,10 @@ protocol CommonWeatherData: Codable {
     var precipType: String? { get set }
     var pressure: Double? { get set }
     var summary: String? { get set }
-    var time: Int! { get set }
+    var time: TimeInterval! { get set }
     var uvIndex: Float? { get set }
     var visibility: Float? { get set }
     var windBearing: Double? { get set }
     var windGust: Float? { get set }
     var windSpeed: Float? { get set }
-}
-
-struct CommonPresenter {
-    static func makeTemperature(_ temperature: Double) -> String {
-        return String(format:"%.f", temperature) + "º"
-    }
 }

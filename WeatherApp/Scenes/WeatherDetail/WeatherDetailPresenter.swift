@@ -59,10 +59,13 @@ extension WeatherDetailViewController {
                             reusableView.temperatureLabel.text = "-"
                             return reusableView
                     }
-
+                    let date = Date(timeIntervalSince1970: weatherData.currently.time)
+                    reusableView.dayLabel.text = date.getDayName(by: .week, timeZone: weatherData.timezone)
+                    reusableView.highTemperatureLable.text = weatherData.daily.data[0].temperatureHigh!.asString
+                    reusableView.lowTemperatureLabel.text = weatherData.daily.data[0].temperatureLow!.asString
                     reusableView.locationLabel.text = currentLocation.name
                     reusableView.summaryLabel.text = weatherData.currently.summary!
-                    reusableView.temperatureLabel.text = CommonPresenter.makeTemperature(weatherData.currently.temperature!)
+                    reusableView.temperatureLabel.text = weatherData.currently.temperature!.asTemperature
                     return reusableView
 
                 case 1:
@@ -102,9 +105,9 @@ extension WeatherDetailViewController {
                     withReuseIdentifier: TodaySummaryCell.identifier,
                     for: indexPath) as! TodaySummaryCell
             cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은"
-                + CommonPresenter.makeTemperature(weatherData!.currently.temperature!)
+                + weatherData!.currently.temperature!.asTemperature
                 + "이며 오늘 예상 최고 기온은"
-                + CommonPresenter.makeTemperature(weatherData!.currently.temperature!)
+                + weatherData!.currently.temperature!.asTemperature
                 + "입니다."
                 return cell
             case 4:

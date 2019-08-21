@@ -38,8 +38,10 @@ extension WeatherDetailViewController {
             ServerAccess.request(urlRequest: request, onSuccess: { (icon) in
                 cell.iconImageView.image = icon
             }) { (_) in }
-            cell.highTemperatureLabel.text = CommonPresenter.makeTemperature(data.apparentTemperatureHigh!)
-            cell.lowTemperatureLabel.text = CommonPresenter.makeTemperature(data.apparentTemperatureLow!)
+            let date = Date(timeIntervalSince1970: data.time)
+            cell.dayLabel.text = date.getDayName(by: .week, timeZone: model!.timezone)
+            cell.highTemperatureLabel.text = data.temperatureHigh!.asString
+            cell.lowTemperatureLabel.text = data.temperatureLow!.asString
             return cell
         }
 
