@@ -12,19 +12,32 @@ extension WeatherDetailViewController {
 
     class Presenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
+        private enum Constant {
+            static let placeholder: String = "-"
+            static let screenWidth: CGFloat = UIScreen.main.bounds.width
+        }
+
         private let hourlyPresenter = HourlyWeatherCellPresenter()
 
         private let dailyPresenter = DailyWeatherCellPresenter()
 
         private let todayPresenter = TodayWeatherDetailCellPresenter()
 
-        private let screenWidth: CGFloat = UIScreen.main.bounds.width
-
         weak var collectionView: UICollectionView? {
             didSet {
                 collectionView?.dataSource = self
                 collectionView?.delegate = self
             }
+        }
+
+        var locationName: String = Constant.placeholder {
+            didSet {
+                collectionView?.reloadData()
+            }
+        }
+
+        var weatherData: Response? {
+            return WeatherRepository.weatherTable[locationName]
         }
 
         func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -40,9 +53,6 @@ extension WeatherDetailViewController {
 
         public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-            let currentLocation = WeatherRepository.locations.data[indexPath.row]
-            let weatherData = WeatherRepository.weatherTable[currentLocation.name]
-
             if kind == UICollectionView.elementKindSectionHeader {
 
                 switch indexPath.section {
@@ -54,16 +64,16 @@ extension WeatherDetailViewController {
 
                     guard let weatherData = weatherData
                         else {
-                            reusableView.locationLabel.text = currentLocation.name
-                            reusableView.summaryLabel.text = "-"
-                            reusableView.temperatureLabel.text = "-"
+                            reusableView.locationLabel.text = locationName
+                            reusableView.summaryLabel.text = Constant.placeholder
+                            reusableView.temperatureLabel.text = Constant.placeholder
                             return reusableView
                     }
                     let date = Date(timeIntervalSince1970: weatherData.currently.time)
                     reusableView.dayLabel.text = date.getDayName(by: .week, timeZone: weatherData.timezone)
                     reusableView.highTemperatureLable.text = weatherData.daily.data[0].temperatureHigh!.asString
                     reusableView.lowTemperatureLabel.text = weatherData.daily.data[0].temperatureLow!.asString
-                    reusableView.locationLabel.text = currentLocation.name
+                    reusableView.locationLabel.text = locationName
                     reusableView.summaryLabel.text = weatherData.currently.summary!
                     reusableView.temperatureLabel.text = weatherData.currently.temperature!.asTemperature
                     return reusableView
@@ -89,9 +99,6 @@ extension WeatherDetailViewController {
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-            let currentLocation = WeatherRepository.locations.data[indexPath.row]
-            let weatherData = WeatherRepository.weatherTable[currentLocation.name]
-
             switch indexPath.section {
             case 2:
                 let cell = collectionView.dequeueReusableCell(
@@ -104,11 +111,11 @@ extension WeatherDetailViewController {
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: TodaySummaryCell.identifier,
                     for: indexPath) as! TodaySummaryCell
-            cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은"
-                + weatherData!.currently.temperature!.asTemperature
-                + "이며 오늘 예상 최고 기온은"
-                + weatherData!.currently.temperature!.asTemperature
-                + "입니다."
+                cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은"
+                    + weatherData!.currently.temperature!.asTemperature
+                    + "이며 오늘 예상 최고 기온은"
+                    + weatherData!.currently.temperature!.asTemperature
+                    + "입니다."
                 return cell
             case 4:
                 let cell = collectionView.dequeueReusableCell(
@@ -131,11 +138,11 @@ extension WeatherDetailViewController {
             switch indexPath.section {
             case 2:
                 let dailyDataCount: CGFloat = CGFloat(weatherData?.daily.data.count ?? 0)
-                return CGSize(width: screenWidth, height: (50 * dailyDataCount))
+                return CGSize(width: Constant.screenWidth, height: (50 * dailyDataCount))
             case 3:
-                return CGSize(width: screenWidth, height: 100)
+                return CGSize(width: Constant.screenWidth, height: 100)
             case 4:
-                return CGSize(width: screenWidth, height: 50 * 5)
+                return CGSize(width: Constant.screenWidth, height: 50 * 5)
             default:
                 return .zero
             }
@@ -145,9 +152,9 @@ extension WeatherDetailViewController {
 
             switch section {
             case 0:
-                return CGSize(width: screenWidth, height: 300)
+                return CGSize(width: Constant.screenWidth, height: 300)
             case 1:
-                return CGSize(width: screenWidth, height: 120)
+                return CGSize(width: Constant.screenWidth, height: 120)
             default:
                 return .zero
             }

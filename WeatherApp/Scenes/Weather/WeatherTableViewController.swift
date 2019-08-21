@@ -28,8 +28,8 @@ class WeatherTableViewController: UITableViewController {
     private func setupPresenter() {
         presenter.tableView = tableView
 
-        presenter.onTapItem = { [weak self] (_, data) in
-            self?.pushWeatherDetailViewController((data.name, data.weather))
+        presenter.onTapItem = { [weak self] (_, locationName) in
+            self?.pushWeatherDetailViewController(locationName: locationName)
         }
     }
 
@@ -80,10 +80,8 @@ class WeatherTableViewController: UITableViewController {
         )
     }
 
-    private func pushWeatherDetailViewController(_ data: (name: String, weather: Response)) {
-        let weatherDetail: WeatherDetailViewController = UIStoryboard
-            .weatherDetail
-            .instantiateViewController()
+    private func pushWeatherDetailViewController(locationName: LocationName) {
+        let weatherDetail = WeatherDetailViewController(locationName)
         navigationController?.pushViewController(weatherDetail, animated: true)
     }
 
