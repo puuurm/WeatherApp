@@ -44,8 +44,7 @@ extension WeatherTableViewController {
 
                     return cell
             }
-            let date = Date(timeIntervalSince1970: weather.currently.time)
-            cell.timeLabel.text = date.getDayName(by: .time, timeZone: weather.timezone)
+            cell.timeLabel.text = Date().getDayName(by: .time, timeZone: weather.timezone)
             cell.temperatureLabel.text = weather.currently.temperature!.asTemperature
             cell.locationNameLabel.text = currentLocation.name
             return cell
