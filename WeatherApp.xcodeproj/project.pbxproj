@@ -54,6 +54,7 @@
 		C9CEA400230E8DBF00F9A363 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA3FF230E8DBF00F9A363 /* Parser.swift */; };
 		C9CEA402230E8DEA00F9A363 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA401230E8DEA00F9A363 /* ServiceError.swift */; };
 		C9CEA404230EB26C00F9A363 /* WeatherDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA403230EB26C00F9A363 /* WeatherDetailCell.swift */; };
+		C9CEA406230ECF9500F9A363 /* PagingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA405230ECF9500F9A363 /* PagingPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		C9CEA3FF230E8DBF00F9A363 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C9CEA401230E8DEA00F9A363 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		C9CEA403230EB26C00F9A363 /* WeatherDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailCell.swift; sourceTree = "<group>"; };
+		C9CEA405230ECF9500F9A363 /* PagingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 			children = (
 				C95456B52305AE9F00266438 /* Views */,
 				C972D54822FEF57F00438584 /* WeatherDetailViewController.swift */,
+				C9CEA405230ECF9500F9A363 /* PagingPresenter.swift */,
 				C9584340230999410038BF2A /* WeatherDetailPresenter.swift */,
 				C9CEA3F0230E6A4D00F9A363 /* CurrentWeatherHeaderPresenter.swift */,
 				C95B79C623061EE700D4956C /* HourlyWeatherCellPresenter.swift */,
@@ -457,6 +460,7 @@
 				C95843432309B3400038BF2A /* UIView+Extension.swift in Sources */,
 				C958433F23098C960038BF2A /* TodayWeatherDetailCellPresenter.swift in Sources */,
 				C9CEA3FA230E8B0300F9A363 /* ViewData.swift in Sources */,
+				C9CEA406230ECF9500F9A363 /* PagingPresenter.swift in Sources */,
 				C9584345230AF2EB0038BF2A /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
