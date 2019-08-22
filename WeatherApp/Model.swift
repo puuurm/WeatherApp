@@ -162,3 +162,35 @@ protocol CommonWeatherData: Codable {
     var windGust: Float? { get set }
     var windSpeed: Float? { get set }
 }
+
+struct CurrentWeatherViewData {
+    var day: Date
+    var timezone: String
+    var highTemperature: Double?
+    var lowTemperature: Double?
+    var locationName: String
+    var summary: String?
+    var temperature: Double?
+}
+
+
+struct HourlyWeatherViewData {
+    var date: Date
+    var timezone: String
+    var temperature: Double?
+    var iconName: String?
+}
+
+struct DailyWeatherViewData {
+    var date: Date
+    var timezone: String
+    var iconName: String?
+    var highTemperature: Double?
+    var lowTemperature: Double?
+}
+
+struct SummaryWeatherViewData {
+    var summary: String?
+    var highTemperature: Double?
+    var lowTemperature: Double?
+}

@@ -12,7 +12,7 @@ extension WeatherDetailViewController {
 
     class HourlyWeatherCellPresenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-        var model: Response? {
+        var model: [HourlyWeatherViewData] = [] {
             didSet {
                 collectionView?.reloadData()
             }
@@ -25,29 +25,55 @@ extension WeatherDetailViewController {
             }
         }
 
+        func setContent(_ content: [HourlyWeatherViewData],
+                        cellProvider: UICollectionView,
+                        indexPath: IndexPath)
+            -> HourlyCollectionViewCell
+        {
+            let reusableView = cellProvider.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath
+                ) as! HourlyCollectionViewCell
+            self.collectionView = reusableView.collectionView
+            model = content
+            return reusableView
+        }
+
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return model?.hourly.data.count ?? .zero
+            return model.count
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: HourlyWeatherCell.identifier,
                 for: indexPath) as! HourlyWeatherCell
-            let data = model!.hourly.data[indexPath.row]
-            let date = Date(timeIntervalSince1970: data.time)
-            cell.timeLabel.text = date.getDayName(by: .hour, timeZone: model!.timezone)
-            cell.temperatureLabel.text = data.temperature!.asTemperature
-            let request = Request.icon(name: data.icon!)
+            let currentItem = model[indexPath.row]
+
+            guard let iconName = currentItem.iconName,
+                let temperatureText = currentItem.temperature?.asTemperature
+            else {
+                cell.temperatureLabel.text = .cellPlaceholder
+                cell.timeLabel.text = .cellPlaceholder
+                cell.weatherIconImageView.image = UIImage()
+                return cell
+            }
+
+            cell.timeLabel.text = currentItem.date.getDayName(by: .hour,timeZone: currentItem.timezone)
+            cell.temperatureLabel.text = temperatureText
+            
+            let request = Request.icon(name: iconName)
             ServerAccess.request(urlRequest: request, onSuccess: { (icon) in
                 cell.weatherIconImageView.image = icon
-            }) { (_) in }
+            }) { (_) in
+                cell.weatherIconImageView.image = UIImage()
+            }
             return cell
-
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(width: 80, height: 120)
         }
+
     }
 
 }

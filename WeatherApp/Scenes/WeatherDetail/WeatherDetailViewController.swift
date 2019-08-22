@@ -39,6 +39,47 @@ class WeatherDetailViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         registerCollectionViewCell()
+
+        guard let weatherData = WeatherRepository.weatherTable[locationName] else {
+            return
+        }
+
+        presenter.currentHeaderData = CurrentWeatherViewData(
+            day: Date(timeIntervalSince1970: weatherData.currently.time),
+            timezone: weatherData.timezone,
+            highTemperature: weatherData.daily.data[0].temperatureHigh,
+            lowTemperature: weatherData.daily.data[0].temperatureLow,
+            locationName: locationName,
+            summary: weatherData.currently.summary,
+            temperature: weatherData.currently.temperature
+        )
+
+        presenter.hourlyList = weatherData.hourly.data.map({ (hourly) -> HourlyWeatherViewData in
+            let date = Date(timeIntervalSince1970: hourly.time)
+            return HourlyWeatherViewData(
+                date: date,
+                timezone: weatherData.timezone,
+                temperature: hourly.temperature,
+                iconName: hourly.icon
+            )
+        })
+
+        presenter.dailyList = weatherData.daily.data.map({ (daily) -> DailyWeatherViewData in
+            let date = Date(timeIntervalSince1970: daily.time)
+            return DailyWeatherViewData(
+                date: date,
+                timezone: weatherData.timezone,
+                iconName: daily.icon,
+                highTemperature: daily.temperatureHigh,
+                lowTemperature: daily.temperatureLow
+            )
+        })
+
+        presenter.summaryViewData = SummaryWeatherViewData(
+            summary: weatherData.currently.summary,
+            highTemperature: weatherData.daily.data[0].temperatureHigh,
+            lowTemperature: weatherData.daily.data[0].temperatureLow
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {

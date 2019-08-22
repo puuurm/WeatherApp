@@ -15,7 +15,7 @@ extension WeatherDetailViewController {
         private let titleList: [String] = [
             "일출", "일몰", "비 올 확률", "습도", "바람", "체감", "강수량", "기압", "가시거리", "자외선 지수"
         ]
-        var model: Response? {
+        var model: SummaryWeatherViewData? {
             didSet {
                 collectionView?.reloadData()
             }
@@ -26,6 +26,19 @@ extension WeatherDetailViewController {
                 collectionView?.dataSource = self
                 collectionView?.delegate = self
             }
+        }
+
+        func setContent(_ content: SummaryWeatherViewData?,
+                        cellProvider: UICollectionView,
+                        indexPath: IndexPath)
+            -> TodayWeatherDetailCollectionViewCell
+        {
+            let cell = cellProvider.dequeueReusableCell(
+                withReuseIdentifier: TodayWeatherDetailCollectionViewCell.identifier,
+                for: indexPath) as! TodayWeatherDetailCollectionViewCell
+            self.collectionView = cell.collectionView
+            self.model = content
+            return cell
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

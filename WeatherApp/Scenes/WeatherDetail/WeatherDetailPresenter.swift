@@ -13,15 +13,26 @@ extension WeatherDetailViewController {
     class Presenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
         private enum Constant {
-            static let placeholder: String = "-"
             static let screenWidth: CGFloat = UIScreen.main.bounds.width
         }
+
+        private let currentPresenter = CurrentWeatherHeaderPresenter()
 
         private let hourlyPresenter = HourlyWeatherCellPresenter()
 
         private let dailyPresenter = DailyWeatherCellPresenter()
 
+        private let summaryPresenter = SummaryWeatherPresenter()
+
         private let todayPresenter = TodayWeatherDetailCellPresenter()
+
+        var currentHeaderData: CurrentWeatherViewData?
+
+        var hourlyList: [HourlyWeatherViewData] = []
+
+        var dailyList: [DailyWeatherViewData] = []
+
+        var summaryViewData: SummaryWeatherViewData?
 
         weak var collectionView: UICollectionView? {
             didSet {
@@ -30,7 +41,7 @@ extension WeatherDetailViewController {
             }
         }
 
-        var locationName: String = Constant.placeholder {
+        var locationName: String = .cellPlaceholder {
             didSet {
                 collectionView?.reloadData()
             }
@@ -41,56 +52,30 @@ extension WeatherDetailViewController {
         }
 
         func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return 5
+            return Section.numberOfSections
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            switch section {
-            case 0, 1: return 0
-            default: return 1
-            }
+            return Section(rawValue: section)?.numberOfRows ?? 0
         }
 
         public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-            if kind == UICollectionView.elementKindSectionHeader {
+            switch Section(rawValue: indexPath.section) {
+            case .currentHeader?:
+                return currentPresenter.setContent(
+                    currentHeaderData,
+                    cellProvider: collectionView,
+                    indexPath: indexPath)
 
-                switch indexPath.section {
-                case 0:
-                    let reusableView = collectionView.dequeueReusableSupplementaryView(
-                        ofKind: kind,
-                        withReuseIdentifier: CurrentWeatherHeaderCell.identifier, for: indexPath
-                        ) as! CurrentWeatherHeaderCell
+            case .hourlyHeader?:
+                return hourlyPresenter.setContent(
+                    hourlyList,
+                    cellProvider: collectionView,
+                    indexPath: indexPath
+                )
 
-                    guard let weatherData = weatherData
-                        else {
-                            reusableView.locationLabel.text = locationName
-                            reusableView.summaryLabel.text = Constant.placeholder
-                            reusableView.temperatureLabel.text = Constant.placeholder
-                            return reusableView
-                    }
-                    let date = Date(timeIntervalSince1970: weatherData.currently.time)
-                    reusableView.dayLabel.text = date.getDayName(by: .week, timeZone: weatherData.timezone)
-                    reusableView.highTemperatureLable.text = weatherData.daily.data[0].temperatureHigh!.asString
-                    reusableView.lowTemperatureLabel.text = weatherData.daily.data[0].temperatureLow!.asString
-                    reusableView.locationLabel.text = locationName
-                    reusableView.summaryLabel.text = weatherData.currently.summary!
-                    reusableView.temperatureLabel.text = weatherData.currently.temperature!.asTemperature
-                    return reusableView
-
-                case 1:
-                    let reusableView = collectionView.dequeueReusableSupplementaryView(
-                        ofKind: kind,
-                        withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath
-                        ) as! HourlyCollectionViewCell
-                    hourlyPresenter.collectionView = reusableView.collectionView
-                    hourlyPresenter.model = weatherData
-                    return reusableView
-
-                default: break
-                }
-
-
+            default: break
             }
             return UICollectionReusableView()
         }
@@ -99,31 +84,24 @@ extension WeatherDetailViewController {
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-            switch indexPath.section {
-            case 2:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: DailyCollectionViewCell.identifier,
-                    for: indexPath) as! DailyCollectionViewCell
-                dailyPresenter.collectionView = cell.collectionView
-                dailyPresenter.model = weatherData
-                return cell
-            case 3:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: TodaySummaryCell.identifier,
-                    for: indexPath) as! TodaySummaryCell
-                cell.descriptionLabel?.text = "오늘: 현재 날씨. 현재 기온은"
-                    + weatherData!.currently.temperature!.asTemperature
-                    + "이며 오늘 예상 최고 기온은"
-                    + weatherData!.currently.temperature!.asTemperature
-                    + "입니다."
-                return cell
-            case 4:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: TodayWeatherDetailCollectionViewCell.identifier,
-                    for: indexPath) as! TodayWeatherDetailCollectionViewCell
-                todayPresenter.collectionView = cell.collectionView
-                todayPresenter.model = weatherData
-                return cell
+            switch Section(rawValue: indexPath.section) {
+            case .daily?:
+                return dailyPresenter.setContent(
+                    dailyList,
+                    cellProvider: collectionView,
+                    indexPath: indexPath)
+
+            case .todaySummary?:
+                return summaryPresenter.setContent(
+                    summaryViewData,
+                    cellProvider: collectionView,
+                    indexPath: indexPath)
+
+            case .todayDetail?:
+                return todayPresenter.setContent(
+                    summaryViewData,
+                    cellProvider: collectionView,
+                    indexPath: indexPath)
             default:
                 return UICollectionViewCell()
             }
@@ -132,16 +110,13 @@ extension WeatherDetailViewController {
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-            let currentLocation = WeatherRepository.locations.data[indexPath.row]
-            let weatherData = WeatherRepository.weatherTable[currentLocation.name]
-
-            switch indexPath.section {
-            case 2:
+            switch Section(rawValue: indexPath.section) {
+            case .daily?:
                 let dailyDataCount: CGFloat = CGFloat(weatherData?.daily.data.count ?? 0)
                 return CGSize(width: Constant.screenWidth, height: (50 * dailyDataCount))
-            case 3:
+            case .todaySummary?:
                 return CGSize(width: Constant.screenWidth, height: 100)
-            case 4:
+            case .todayDetail?:
                 return CGSize(width: Constant.screenWidth, height: 50 * 5)
             default:
                 return .zero
@@ -150,18 +125,34 @@ extension WeatherDetailViewController {
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
-            switch section {
-            case 0:
+            switch Section(rawValue: section) {
+            case .currentHeader?:
                 return CGSize(width: Constant.screenWidth, height: 300)
-            case 1:
+            case .hourlyHeader?:
                 return CGSize(width: Constant.screenWidth, height: 120)
             default:
                 return .zero
             }
-
         }
 
-
     }
+}
 
+extension WeatherDetailViewController.Presenter {
+    enum Section: Int {
+        case currentHeader
+        case hourlyHeader
+        case daily
+        case todaySummary
+        case todayDetail
+
+        var numberOfRows: Int {
+            switch rawValue {
+            case 0, 1: return 0
+            default: return 1
+            }
+        }
+
+        static var numberOfSections: Int { return 5 }
+    }
 }

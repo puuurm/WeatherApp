@@ -12,7 +12,7 @@ extension WeatherDetailViewController {
 
     class DailyWeatherCellPresenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-        var model: Response? {
+        var model: [DailyWeatherViewData] = [] {
             didSet {
                 collectionView?.reloadData()
             }
@@ -25,23 +25,48 @@ extension WeatherDetailViewController {
             }
         }
 
+        func setContent(_ content: [DailyWeatherViewData],
+                        cellProvider: UICollectionView,
+                        indexPath: IndexPath)
+            -> DailyCollectionViewCell
+        {
+            let cell = cellProvider.dequeueReusableCell(
+                withReuseIdentifier: DailyCollectionViewCell.identifier,
+                for: indexPath) as! DailyCollectionViewCell
+            self.collectionView = cell.collectionView
+            self.model = content
+            return cell
+        }
+
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return model?.daily.data.count ?? .zero
+            return model.count
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: DailyWeatherCell.identifier,
                 for: indexPath) as! DailyWeatherCell
-            let data = model!.daily.data[indexPath.row]
-            let request = Request.icon(name: data.icon!)
+            let data = model[indexPath.row]
+
+            guard let iconName = data.iconName,
+                let highTemperatureText = data.highTemperature?.asString,
+                let lowTemperatureText = data.lowTemperature?.asTemperature else {
+
+                    cell.dayLabel.text = .cellPlaceholder
+                    cell.highTemperatureLabel.text = .cellPlaceholder
+                    cell.lowTemperatureLabel.text = .cellPlaceholder
+                    return cell
+
+            }
+            cell.dayLabel.text = data.date.getDayName(by: .week, timeZone: data.timezone)
+            cell.highTemperatureLabel.text = highTemperatureText
+            cell.lowTemperatureLabel.text = lowTemperatureText
+
+
+            let request = Request.icon(name: iconName)
             ServerAccess.request(urlRequest: request, onSuccess: { (icon) in
                 cell.iconImageView.image = icon
             }) { (_) in }
-            let date = Date(timeIntervalSince1970: data.time)
-            cell.dayLabel.text = date.getDayName(by: .week, timeZone: model!.timezone)
-            cell.highTemperatureLabel.text = data.temperatureHigh!.asString
-            cell.lowTemperatureLabel.text = data.temperatureLow!.asString
             return cell
         }
 

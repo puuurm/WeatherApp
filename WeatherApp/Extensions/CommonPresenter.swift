@@ -34,3 +34,7 @@ enum DateFormat: String {
     case hour = "h a"
     case time = "h:mm a"
 }
+
+extension String {
+    static let cellPlaceholder: String = "-"
+}
