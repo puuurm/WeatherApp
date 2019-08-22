@@ -69,6 +69,20 @@ extension WeatherDetailViewController {
                 lowTemperature: weatherData.daily.data[0].temperatureLow
             )
 
+            presenter.todayDetailViewData = TodayDetailWeatherViewData(
+                timezone: weatherData.timezone,
+                sunriseTime: weatherData.daily.data[0].sunriseTime?.asDate,
+                sunsetTime: weatherData.daily.data[0].sunsetTime?.asDate,
+                humidity: weatherData.currently.humidity,
+                windBearing: weatherData.currently.windBearing,
+                windSpeed: weatherData.currently.windSpeed,
+                apparentTemperature: weatherData.hourly.data[0].apparentTemperature,
+                precipProbability: weatherData.currently.precipProbability,
+                precipIntensity: weatherData.currently.precipIntensity,
+                precipType: weatherData.currently.precipType,
+                pressure: weatherData.currently.pressure,
+                uvIndex: weatherData.currently.uvIndex,
+                visibility: weatherData.currently.visibility)
         }
 
         var weatherData: Forecast? {

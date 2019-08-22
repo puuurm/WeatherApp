@@ -12,10 +12,7 @@ extension WeatherDetailViewController {
 
     class TodayWeatherDetailCellPresenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-        private let titleList: [String] = [
-            "일출", "일몰", "비 올 확률", "습도", "바람", "체감", "강수량", "기압", "가시거리", "자외선 지수"
-        ]
-        var model: SummaryWeatherViewData? {
+        var model: TodayDetailWeatherViewData? {
             didSet {
                 collectionView?.reloadData()
             }
@@ -28,7 +25,7 @@ extension WeatherDetailViewController {
             }
         }
 
-        func setContent(_ content: SummaryWeatherViewData?,
+        func setContent(_ content: TodayDetailWeatherViewData?,
                         cellProvider: UICollectionView,
                         indexPath: IndexPath)
             -> TodayWeatherDetailCollectionViewCell
@@ -42,14 +39,17 @@ extension WeatherDetailViewController {
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return titleList.count
+            return TodayWeather.allTypes.count
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: TodayWeatherDetailCell.identifier,
                 for: indexPath) as! TodayWeatherDetailCell
-            cell.titleLabel.text = titleList[indexPath.row]
+            let type = TodayWeather.allTypes[indexPath.row]
+            
+            cell.contentLabel.text = model?.getText(type: type) ?? .cellPlaceholder
+            cell.titleLabel.text = type.rawValue
             return cell
         }
 
@@ -67,3 +67,54 @@ extension WeatherDetailViewController {
     }
 
 }
+
+enum TodayWeather: String {
+    case sunrise
+    case sunset
+    case probability
+    case humidity
+    case wind
+    case feelsLike
+    case intensity
+    case pressure
+    case uvIndex
+    case visibility
+
+    static let allTypes: [TodayWeather] = [
+        .sunrise, .probability, .wind,
+        .intensity, .visibility, .sunset,
+        .humidity, .feelsLike, .pressure,
+        .uvIndex]
+}
+
+fileprivate extension TodayDetailWeatherViewData {
+
+    func getText(type: TodayWeather) -> String? {
+        switch type {
+        case .sunrise:
+            return sunriseTime?.getDayName(by: .time, timeZone: timezone)
+        case .sunset:
+            return sunsetTime?.getDayName(by: .time, timeZone: timezone)
+        case .probability:
+            return precipProbability?.asPercent
+        case .humidity:
+            return humidity?.asPercent
+        case .wind:
+            let degree = windBearing?.asDegrees ?? ""
+            let speed = windSpeed?.asMetersPerSecond ?? 0.0.asMetersPerSecond
+            return degree + speed
+        case .feelsLike:
+            return apparentTemperature?.asTemperature
+        case .intensity:
+            return precipIntensity?.asMMPerHour
+        case .pressure:
+            return pressure?.asMilibar
+        case .uvIndex:
+            return uvIndex?.asString
+        case .visibility:
+            return visibility?.asKilometers
+
+        }
+    }
+}
+

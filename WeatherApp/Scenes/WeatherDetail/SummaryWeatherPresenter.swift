@@ -28,11 +28,11 @@ extension WeatherDetailViewController {
                     cell.descriptionLabel?.text = .cellPlaceholder
                     return cell
             }
-            cell.descriptionLabel?.text = "오늘: 현재 날씨" + summaryText + ". 최고 기온은"
+            cell.descriptionLabel?.text = "오늘: 현재 날씨" + summaryText + ". 최고 기온은 "
                 + highTemperatureText
-                + "입니다. 최저 기온은"
+                + " 입니다. 최저 기온은 "
                 + lowTemperatureText
-                + "입니다."
+                + " 입니다."
             return cell
         }
 

@@ -38,3 +38,19 @@ struct SummaryWeatherViewData {
     var highTemperature: Double?
     var lowTemperature: Double?
 }
+
+struct TodayDetailWeatherViewData {
+    var timezone: String
+    var sunriseTime: Date?
+    var sunsetTime: Date?
+    var humidity: Double?
+    var windBearing: Double?
+    var windSpeed: Double?
+    var apparentTemperature: Double?
+    var precipProbability: Double?
+    var precipIntensity: Double?
+    var precipType: String?
+    var pressure: Double?
+    var uvIndex: Double?
+    var visibility: Double?
+}

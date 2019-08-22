@@ -34,6 +34,8 @@ extension WeatherDetailViewController {
 
         var summaryViewData: SummaryWeatherViewData?
 
+        var todayDetailViewData: TodayDetailWeatherViewData?
+
         weak var collectionView: UICollectionView? {
             didSet {
                 collectionView?.dataSource = self
@@ -99,7 +101,7 @@ extension WeatherDetailViewController {
 
             case .todayDetail?:
                 return todayPresenter.setContent(
-                    summaryViewData,
+                    todayDetailViewData,
                     cellProvider: collectionView,
                     indexPath: indexPath)
             default:
@@ -117,7 +119,7 @@ extension WeatherDetailViewController {
             case .todaySummary?:
                 return CGSize(width: Constant.screenWidth, height: 100)
             case .todayDetail?:
-                return CGSize(width: Constant.screenWidth, height: 50 * 5)
+                return CGSize(width: Constant.screenWidth, height: 50 * 6 + 20)
             default:
                 return .zero
             }

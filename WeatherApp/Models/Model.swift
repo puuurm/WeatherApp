@@ -32,11 +32,11 @@ struct HourlyWeatherInfo: Codable {
 
 struct CurrentlyWeatherData: CommonWeatherData {
     var temperature: Double?
-    var cloudCover: Float?
+    var cloudCover: Double?
     var dewPoint: Double?
-    var humidity: Float?
+    var humidity: Double?
     var icon: String?
-    var ozone: Float?
+    var ozone: Double?
     var precipIntensity: Double?
     var precipIntensityError: Double?
     var precipProbability: Double?
@@ -44,22 +44,22 @@ struct CurrentlyWeatherData: CommonWeatherData {
     var pressure: Double?
     var summary: String?
     var time: TimeInterval!
-    var uvIndex: Float?
-    var visibility: Float?
+    var uvIndex: Double?
+    var visibility: Double?
     var windBearing: Double?
-    var windGust: Float?
-    var windSpeed: Float?
+    var windGust: Double?
+    var windSpeed: Double?
     var nearestStormDistance: Double?
     var nearestStormBearing: Double?
 }
 
 struct HourlyWeatherData: CommonWeatherData {
     var temperature: Double?
-    var cloudCover: Float?
+    var cloudCover: Double?
     var dewPoint: Double?
-    var humidity: Float?
+    var humidity: Double?
     var icon: String?
-    var ozone: Float?
+    var ozone: Double?
     var precipIntensity: Double?
     var precipIntensityError: Double?
     var precipProbability: Double?
@@ -67,22 +67,22 @@ struct HourlyWeatherData: CommonWeatherData {
     var pressure: Double?
     var summary: String?
     var time: TimeInterval!
-    var uvIndex: Float?
-    var visibility: Float?
+    var uvIndex: Double?
+    var visibility: Double?
     var windBearing: Double?
-    var windGust: Float?
-    var windSpeed: Float?
+    var windGust: Double?
+    var windSpeed: Double?
     var apparentTemperature: Double?
     var precipAccumulation: Double?
 }
 
 struct DailyWeatherData: CommonWeatherData {
     var temperature: Double?
-    var cloudCover: Float?
+    var cloudCover: Double?
     var dewPoint: Double?
-    var humidity: Float?
+    var humidity: Double?
     var icon: String?
-    var ozone: Float?
+    var ozone: Double?
     var precipIntensity: Double?
     var precipIntensityError: Double?
     var precipProbability: Double?
@@ -90,11 +90,11 @@ struct DailyWeatherData: CommonWeatherData {
     var pressure: Double?
     var summary: String?
     var time: TimeInterval!
-    var uvIndex: Float?
-    var visibility: Float?
+    var uvIndex: Double?
+    var visibility: Double?
     var windBearing: Double?
-    var windGust: Float?
-    var windSpeed: Float?
+    var windGust: Double?
+    var windSpeed: Double?
     var apparentTemperatureHigh: Double?
     var apparentTemperatureHighTime: TimeInterval?
     var apparentTemperatureLow: Double?
@@ -123,11 +123,11 @@ struct DailyWeatherData: CommonWeatherData {
 
 protocol CommonWeatherData: Codable {
     var temperature: Double? { get set }
-    var cloudCover: Float? { get set }
+    var cloudCover: Double? { get set }
     var dewPoint: Double? { get set }
-    var humidity: Float? { get set }
+    var humidity: Double? { get set }
     var icon: String? { get set }
-    var ozone: Float? { get set }
+    var ozone: Double? { get set }
     var precipIntensity: Double? { get set }
     var precipIntensityError: Double? { get set }
     var precipProbability: Double? { get set }
@@ -135,9 +135,9 @@ protocol CommonWeatherData: Codable {
     var pressure: Double? { get set }
     var summary: String? { get set }
     var time: TimeInterval! { get set }
-    var uvIndex: Float? { get set }
-    var visibility: Float? { get set }
+    var uvIndex: Double? { get set }
+    var visibility: Double? { get set }
     var windBearing: Double? { get set }
-    var windGust: Float? { get set }
-    var windSpeed: Float? { get set }
+    var windGust: Double? { get set }
+    var windSpeed: Double? { get set }
 }
