@@ -50,6 +50,9 @@
 		C9CEA3F3230E6A7900F9A363 /* SummaryWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA3F2230E6A7900F9A363 /* SummaryWeatherPresenter.swift */; };
 		C9CEA3FA230E8B0300F9A363 /* ViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA3F9230E8B0300F9A363 /* ViewData.swift */; };
 		C9CEA3FC230E8B3F00F9A363 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA3FB230E8B3F00F9A363 /* Location.swift */; };
+		C9CEA3FE230E8D6D00F9A363 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA3FD230E8D6D00F9A363 /* Request.swift */; };
+		C9CEA400230E8DBF00F9A363 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA3FF230E8DBF00F9A363 /* Parser.swift */; };
+		C9CEA402230E8DEA00F9A363 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEA401230E8DEA00F9A363 /* ServiceError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +113,9 @@
 		C9CEA3F2230E6A7900F9A363 /* SummaryWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryWeatherPresenter.swift; sourceTree = "<group>"; };
 		C9CEA3F9230E8B0300F9A363 /* ViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewData.swift; sourceTree = "<group>"; };
 		C9CEA3FB230E8B3F00F9A363 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C9CEA3FD230E8D6D00F9A363 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		C9CEA3FF230E8DBF00F9A363 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		C9CEA401230E8DEA00F9A363 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,8 +285,11 @@
 			isa = PBXGroup;
 			children = (
 				C972D5512301EB0000438584 /* ServerAccess.swift */,
+				C9CEA3FF230E8DBF00F9A363 /* Parser.swift */,
 				C9584346230C237D0038BF2A /* WeatherRepository.swift */,
 				C9584344230AF2EB0038BF2A /* StorageManager.swift */,
+				C9CEA3FD230E8D6D00F9A363 /* Request.swift */,
+				C9CEA401230E8DEA00F9A363 /* ServiceError.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -416,6 +425,7 @@
 				C95456B42305ADBA00266438 /* DailyCollectionViewCell.swift in Sources */,
 				C954569A2303164100266438 /* Bundle+Extension.swift in Sources */,
 				C958433723097F900038BF2A /* TodaySummaryCell.swift in Sources */,
+				C9CEA3FE230E8D6D00F9A363 /* Request.swift in Sources */,
 				C9CEA3F3230E6A7900F9A363 /* SummaryWeatherPresenter.swift in Sources */,
 				C9CEA3F1230E6A4D00F9A363 /* CurrentWeatherHeaderPresenter.swift in Sources */,
 				C95B79C723061EE700D4956C /* HourlyWeatherCellPresenter.swift in Sources */,
@@ -432,9 +442,11 @@
 				C95843352309738F0038BF2A /* DailyWeatherCellPresenter.swift in Sources */,
 				C958434B230D695E0038BF2A /* CommonPresenter.swift in Sources */,
 				C954569E230553CF00266438 /* WeatherTableCell.swift in Sources */,
+				C9CEA402230E8DEA00F9A363 /* ServiceError.swift in Sources */,
 				C9584347230C237D0038BF2A /* WeatherRepository.swift in Sources */,
 				C972D51E22FEE87700438584 /* AppDelegate.swift in Sources */,
 				C972D5522301EB0000438584 /* ServerAccess.swift in Sources */,
+				C9CEA400230E8DBF00F9A363 /* Parser.swift in Sources */,
 				C95456AD2305A48E00266438 /* DailyWeatherCell.swift in Sources */,
 				C972D54B22FF33F300438584 /* WeatherReactor.swift in Sources */,
 				C95456B22305A6D300266438 /* HourlyCollectionViewCell.swift in Sources */,

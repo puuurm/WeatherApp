@@ -21,20 +21,15 @@ extension Notification.Name {
 class WeatherRepository {
 
     enum State {
-
         case idle
         case requesting
         case loaded
         case error(Error)
-
     }
 
     private(set) static var locations = LocationHistory()
-
     private(set) static var weatherTable: [LocationName: Forecast] = [:]
-
     private static let group = DispatchGroup()
-
     static var state: State = .idle
 
     static func add(location: Location) {
