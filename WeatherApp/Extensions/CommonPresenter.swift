@@ -72,9 +72,3 @@ enum DateFormat: String {
 extension String {
     static let cellPlaceholder: String = "-"
 }
-
-extension TimeInterval {
-    var asDate: Date {
-        return Date(timeIntervalSince1970: self)
-    }
-}
