@@ -10,18 +10,12 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
 
-    let reactor = Reactor()
-
     let presenter = Presenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reactor.viewController = self
-
         setupPresenter()
-        
         observeWeatherRepository()
-
         WeatherRepository.getAllWeather()
     }
 
