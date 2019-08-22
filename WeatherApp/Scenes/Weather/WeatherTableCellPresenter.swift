@@ -38,8 +38,8 @@ extension WeatherTableViewController {
             let currentLocation = WeatherRepository.locations.data[indexPath.row]
             guard let weather = WeatherRepository.weatherTable[currentLocation.name]
                 else {
-                    cell.timeLabel.text = "-"
-                    cell.temperatureLabel.text = "-"
+                    cell.timeLabel.text = .cellPlaceholder
+                    cell.temperatureLabel.text = .cellPlaceholder
                     cell.locationNameLabel.text = currentLocation.name
 
                     return cell
