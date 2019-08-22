@@ -91,7 +91,7 @@ extension WeatherDetailViewController {
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return UIScreen.main.bounds.size
+            return CGSize(width: 414, height: 769)
         }
 
         func setScrollOffset(row: Int) {

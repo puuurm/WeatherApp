@@ -16,6 +16,7 @@ class WeatherDetailCell: UICollectionViewCell, TypeIdentifiable {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = true
+        collectionView.backgroundColor = .white
         return collectionView
     }()
 
@@ -30,6 +31,7 @@ class WeatherDetailCell: UICollectionViewCell, TypeIdentifiable {
 
     func setupViews() {
         contentView.addSubview(collectionView)
+        contentView.backgroundColor = .white
         collectionView.fillSuperview()
         registerCollectionViewCell()
     }

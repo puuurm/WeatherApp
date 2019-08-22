@@ -19,6 +19,7 @@ class WeatherDetailViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = true
         collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = .white
         pagingPresenter.collectionView = collectionView
         pagingPresenter.locationName = locationName
         return collectionView
@@ -31,6 +32,7 @@ class WeatherDetailViewController: UIViewController {
         self.locationName = locationName
         self.index = index
         super.init(nibName: nil, bundle: nil)
+        view.backgroundColor = .white
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,6 +41,7 @@ class WeatherDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupToolbar()
         setupCollectionView()
         registerCollectionViewCell()
         pagingPresenter.setScrollOffset(row: index)
@@ -50,7 +53,22 @@ class WeatherDetailViewController: UIViewController {
 
     private func setupCollectionView() {
         view.addSubview(collectionView)
-        collectionView.fillSuperview()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)]
+        )
+    }
+
+    private func setupToolbar() {
+        let barbutton = UIBarButtonItem(
+            barButtonSystemItem: .stop,
+            target: self,
+            action: #selector(popViewController(_:)))
+        toolbarItems = [barbutton]
+        navigationController?.setToolbarHidden(false, animated: false)
     }
 
     private func registerCollectionViewCell() {
@@ -60,4 +78,7 @@ class WeatherDetailViewController: UIViewController {
         )
     }
 
+    @objc func popViewController(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
 }
