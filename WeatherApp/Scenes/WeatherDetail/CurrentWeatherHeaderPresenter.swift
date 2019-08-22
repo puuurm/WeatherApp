@@ -11,11 +11,11 @@ import UIKit
 extension WeatherDetailViewController {
 
     class CurrentWeatherHeaderPresenter {
+
         func setContent(_ content: CurrentWeatherViewData?,
                         cellProvider: UICollectionView,
-                        indexPath: IndexPath)
-            -> CurrentWeatherHeaderCell
-        {
+                        indexPath: IndexPath) -> CurrentWeatherHeaderCell {
+
             let view = cellProvider.dequeueReusableSupplementaryView(
                 ofKind: UICollectionView.elementKindSectionHeader,
                 withReuseIdentifier: CurrentWeatherHeaderCell.identifier,
@@ -23,8 +23,8 @@ extension WeatherDetailViewController {
 
             guard let content = content,
                 let temperatureText = content.temperature?.asTemperature,
-                let highTemperatureText = content.highTemperature?.asTemperature,
-                let lowTemperatureText = content.lowTemperature?.asTemperature,
+                let highTemperatureText = content.highTemperature?.asString,
+                let lowTemperatureText = content.lowTemperature?.asString,
                 let summaryText = content.summary
                 else {
                     view.highTemperatureLable.text = .cellPlaceholder

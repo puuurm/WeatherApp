@@ -50,7 +50,7 @@ extension WeatherDetailViewController {
 
             guard let iconName = data.iconName,
                 let highTemperatureText = data.highTemperature?.asString,
-                let lowTemperatureText = data.lowTemperature?.asTemperature else {
+                let lowTemperatureText = data.lowTemperature?.asString else {
 
                     cell.dayLabel.text = .cellPlaceholder
                     cell.highTemperatureLabel.text = .cellPlaceholder
