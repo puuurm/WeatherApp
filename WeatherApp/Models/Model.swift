@@ -8,26 +8,6 @@
 
 import Foundation
 
-struct LocationHistory: Codable {
-    var data: [Location] = []
-}
-
-struct Coordinate: Codable {
-    private(set) var latitude: Double
-    private(set) var longitude: Double
-}
-
-extension Coordinate {
-    var asPath: String {
-        return "/\(latitude),\(longitude)"
-    }
-}
-
-struct Location: Codable {
-    var coordinate: Coordinate
-    var name: LocationName
-}
-
 struct Response: Codable {
     var timezone: String
     var currently: CurrentlyWeatherData
@@ -37,7 +17,6 @@ struct Response: Codable {
     var latitude: Double
     var longitude: Double
 }
-
 
 struct DailyWeatherInfo: Codable {
     var data: [DailyWeatherData]
@@ -161,36 +140,4 @@ protocol CommonWeatherData: Codable {
     var windBearing: Double? { get set }
     var windGust: Float? { get set }
     var windSpeed: Float? { get set }
-}
-
-struct CurrentWeatherViewData {
-    var day: Date
-    var timezone: String
-    var highTemperature: Double?
-    var lowTemperature: Double?
-    var locationName: String
-    var summary: String?
-    var temperature: Double?
-}
-
-
-struct HourlyWeatherViewData {
-    var date: Date
-    var timezone: String
-    var temperature: Double?
-    var iconName: String?
-}
-
-struct DailyWeatherViewData {
-    var date: Date
-    var timezone: String
-    var iconName: String?
-    var highTemperature: Double?
-    var lowTemperature: Double?
-}
-
-struct SummaryWeatherViewData {
-    var summary: String?
-    var highTemperature: Double?
-    var lowTemperature: Double?
 }
