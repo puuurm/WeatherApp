@@ -182,17 +182,15 @@
 		C972D51C22FEE87700438584 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9CEA3F8230E8AC600F9A363 /* Protocols */,
+				C9CEA3F7230E8A9B00F9A363 /* Models */,
+				C9CEA3F5230E89EA00F9A363 /* Resouces */,
 				C972D54C22FF38BB00438584 /* Extensions */,
 				C972D53D22FEEAE000438584 /* Scenes */,
+				C9CEA3F6230E8A4800F9A363 /* Services */,
 				C972D51D22FEE87700438584 /* AppDelegate.swift */,
-				C972D52422FEE87900438584 /* Assets.xcassets */,
 				C972D52622FEE87900438584 /* LaunchScreen.storyboard */,
 				C972D52922FEE87900438584 /* Info.plist */,
-				C972D5512301EB0000438584 /* ServerAccess.swift */,
-				C9584346230C237D0038BF2A /* WeatherRepository.swift */,
-				C954569B230326F700266438 /* Model.swift */,
-				C95456B62305B03400266438 /* TypeIdentifiable.swift */,
-				C9584344230AF2EB0038BF2A /* StorageManager.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -263,6 +261,40 @@
 				C958434A230D695E0038BF2A /* CommonPresenter.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C9CEA3F5230E89EA00F9A363 /* Resouces */ = {
+			isa = PBXGroup;
+			children = (
+				C972D52422FEE87900438584 /* Assets.xcassets */,
+			);
+			path = Resouces;
+			sourceTree = "<group>";
+		};
+		C9CEA3F6230E8A4800F9A363 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C972D5512301EB0000438584 /* ServerAccess.swift */,
+				C9584346230C237D0038BF2A /* WeatherRepository.swift */,
+				C9584344230AF2EB0038BF2A /* StorageManager.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		C9CEA3F7230E8A9B00F9A363 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C954569B230326F700266438 /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C9CEA3F8230E8AC600F9A363 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C95456B62305B03400266438 /* TypeIdentifiable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
