@@ -13,8 +13,8 @@ struct LocationHistory: Codable {
 }
 
 struct Coordinate: Codable {
-    private(set) var latitude: Double
-    private(set) var longitude: Double
+    var latitude: Double
+    var longitude: Double
 }
 
 extension Coordinate {

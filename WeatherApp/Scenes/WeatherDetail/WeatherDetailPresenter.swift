@@ -47,7 +47,7 @@ extension WeatherDetailViewController {
             }
         }
 
-        var weatherData: Response? {
+        var weatherData: Forecast? {
             return WeatherRepository.weatherTable[locationName]
         }
 

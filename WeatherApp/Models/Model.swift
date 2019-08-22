@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Response: Codable {
+struct Forecast: Codable {
     var timezone: String
     var currently: CurrentlyWeatherData
     var hourly: HourlyWeatherInfo

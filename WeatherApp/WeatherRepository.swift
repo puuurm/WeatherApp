@@ -31,7 +31,7 @@ class WeatherRepository {
 
     private(set) static var locations = LocationHistory()
 
-    private(set) static var weatherTable: [LocationName: Response] = [:]
+    private(set) static var weatherTable: [LocationName: Forecast] = [:]
 
     private static let group = DispatchGroup()
 
@@ -75,14 +75,14 @@ class WeatherRepository {
         state = .requesting
         let request = Request.weather(coordinate: location.coordinate)
 
-        ServerAccess.request(urlRequest: request, onSuccess: { (weather: Response) in
+        ServerAccess.request(urlRequest: request, onSuccess: { (weather: Forecast) in
             handleGetAllWeatherSuccess(weather: weather, for: location)
         }) { (error) in
             handleGetWeatherFailure(error)
         }
     }
 
-    static func handleGetAllWeatherSuccess(weather: Response, for location: Location) {
+    static func handleGetAllWeatherSuccess(weather: Forecast, for location: Location) {
         state = .loaded
         weatherTable[location.name] = weather
         group.leave()
