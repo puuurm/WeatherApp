@@ -19,7 +19,7 @@ extension WeatherTableViewController {
             }
         }
 
-        var onTapItem: ((Presenter, LocationName) -> Void)?
+        var onTapItem: ((Presenter, LocationName, Int) -> Void)?
 
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 120
@@ -52,7 +52,7 @@ extension WeatherTableViewController {
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let currentLocation = WeatherRepository.locations.data[indexPath.row]
-            onTapItem?(self, currentLocation.name)
+            onTapItem?(self, currentLocation.name, indexPath.row)
         }
     }
 }
