@@ -1,5 +1,5 @@
 //
-//  WeatherDetailPresenter.swift
+//  ContentPresenter.swift
 //  WeatherApp
 //
 //  Created by yangpc on 18/08/2019.
@@ -10,7 +10,7 @@ import UIKit
 
 extension WeatherDetailViewController {
 
-    class Presenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    class ContentPresenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
         private enum Constant {
             static let screenWidth: CGFloat = UIScreen.main.bounds.width
@@ -144,7 +144,7 @@ extension WeatherDetailViewController {
     }
 }
 
-extension WeatherDetailViewController.Presenter {
+extension WeatherDetailViewController.ContentPresenter {
     enum Section: Int {
         case currentHeader
         case hourlyHeader

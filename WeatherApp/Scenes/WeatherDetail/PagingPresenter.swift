@@ -12,7 +12,7 @@ extension WeatherDetailViewController {
 
     class PagingPresenter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-        let presenter = Presenter()
+        let presenter = ContentPresenter()
 
         weak var collectionView: UICollectionView? {
             didSet {
@@ -27,7 +27,7 @@ extension WeatherDetailViewController {
             }
         }
 
-        func setup() {
+        private func setupViewData() {
             guard let weatherData = WeatherRepository.weatherTable[locationName] else {
                 return
             }
@@ -95,12 +95,12 @@ extension WeatherDetailViewController {
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WeatherDetailCell.identifier,
-                for: indexPath) as! WeatherDetailCell
+                withReuseIdentifier: WeatherDetailPagingCell.identifier,
+                for: indexPath) as! WeatherDetailPagingCell
 
             presenter.collectionView = cell.collectionView
             presenter.locationName = WeatherRepository.locations.data[indexPath.row].name
-            setup()
+            setupViewData()
             return cell
         }
 

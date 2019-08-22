@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CurrentWeatherHeaderCell" id="hsE-us-GWC" customClass="CurrentWeatherHeaderCell" customModule="WeatherApp" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CurrentWeatherHeaderView" id="hsE-us-GWC" customClass="CurrentWeatherHeaderView" customModule="WeatherApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -95,12 +95,12 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="aMI-FM-StI"/>
             <connections>
-                <outlet property="dayLabel" destination="JJg-sY-B05" id="h4I-D4-sb5"/>
-                <outlet property="highTemperatureLable" destination="OgQ-8n-7Ch" id="GsZ-fy-oxg"/>
-                <outlet property="locationLabel" destination="u8u-ia-pUe" id="QRy-uY-J9U"/>
-                <outlet property="lowTemperatureLabel" destination="zxx-bM-O8J" id="hvN-bs-fK5"/>
-                <outlet property="summaryLabel" destination="P34-jO-BrO" id="RXi-aT-9ye"/>
-                <outlet property="temperatureLabel" destination="A2U-xD-K4u" id="ufc-Eg-in2"/>
+                <outlet property="dayLabel" destination="JJg-sY-B05" id="pzr-u0-YIQ"/>
+                <outlet property="highTemperatureLable" destination="OgQ-8n-7Ch" id="3oY-dm-i8Q"/>
+                <outlet property="locationLabel" destination="u8u-ia-pUe" id="zu8-45-haF"/>
+                <outlet property="lowTemperatureLabel" destination="zxx-bM-O8J" id="ok2-sX-CZU"/>
+                <outlet property="summaryLabel" destination="P34-jO-BrO" id="2yQ-MV-qHu"/>
+                <outlet property="temperatureLabel" destination="A2U-xD-K4u" id="qi1-EQ-PyV"/>
             </connections>
             <point key="canvasLocation" x="-484.05797101449281" y="60.9375"/>
         </collectionReusableView>

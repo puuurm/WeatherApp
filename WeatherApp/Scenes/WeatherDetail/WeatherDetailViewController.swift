@@ -73,8 +73,8 @@ class WeatherDetailViewController: UIViewController {
 
     private func registerCollectionViewCell() {
         collectionView.register(
-            WeatherDetailCell.self,
-            forCellWithReuseIdentifier: WeatherDetailCell.identifier
+            WeatherDetailPagingCell.self,
+            forCellWithReuseIdentifier: WeatherDetailPagingCell.identifier
         )
     }
 

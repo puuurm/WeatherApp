@@ -14,12 +14,12 @@ extension WeatherDetailViewController {
 
         func setContent(_ content: CurrentWeatherViewData?,
                         cellProvider: UICollectionView,
-                        indexPath: IndexPath) -> CurrentWeatherHeaderCell {
+                        indexPath: IndexPath) -> CurrentWeatherHeaderView {
 
             let view = cellProvider.dequeueReusableSupplementaryView(
                 ofKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: CurrentWeatherHeaderCell.identifier,
-                for: indexPath) as! CurrentWeatherHeaderCell
+                withReuseIdentifier: CurrentWeatherHeaderView.identifier,
+                for: indexPath) as! CurrentWeatherHeaderView
 
             guard let content = content,
                 let temperatureText = content.temperature?.asTemperature,

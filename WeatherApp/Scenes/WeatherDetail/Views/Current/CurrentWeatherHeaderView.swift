@@ -1,5 +1,5 @@
 //
-//  CurrentWeatherHeaderCell.swift
+//  CurrentWeatherHeaderView.swift
 //  WeatherApp
 //
 //  Created by yangpc on 15/08/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrentWeatherHeaderCell: UICollectionReusableView, TypeIdentifiable {
+class CurrentWeatherHeaderView: UICollectionReusableView, TypeIdentifiable {
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!

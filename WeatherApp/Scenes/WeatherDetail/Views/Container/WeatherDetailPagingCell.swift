@@ -1,5 +1,5 @@
 //
-//  WeatherDetailCell.swift
+//  WeatherDetailPagingCell.swift
 //  WeatherApp
 //
 //  Created by yangpc on 22/08/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherDetailCell: UICollectionViewCell, TypeIdentifiable {
+class WeatherDetailPagingCell: UICollectionViewCell, TypeIdentifiable {
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -38,9 +38,9 @@ class WeatherDetailCell: UICollectionViewCell, TypeIdentifiable {
     
     private func registerCollectionViewCell() {
         collectionView.register(
-            UINib(nibName: CurrentWeatherHeaderCell.identifier, bundle: nil),
+            UINib(nibName: CurrentWeatherHeaderView.identifier, bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: CurrentWeatherHeaderCell.identifier
+            withReuseIdentifier: CurrentWeatherHeaderView.identifier
         )
 
         collectionView.register(
